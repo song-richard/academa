@@ -1,7 +1,8 @@
 import React from 'react'
+import CardComponent from './CardComponent'
 
 //MUI Imports
-import { Typography, Card, CardContent, Grid } from '@mui/material';
+import { Typography, Grid } from '@mui/material';
 
 export const Content = () => {
   return (
@@ -14,29 +15,17 @@ export const Content = () => {
 
         {/* CARD 1 */}
         <Grid item xs={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">Deck 1</Typography>
-            </CardContent>
-          </Card>
+          <CardComponent title="Deck 1" />
         </Grid>
 
         {/* CARD 2 */}
         <Grid item xs={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">Deck 2</Typography>
-            </CardContent>
-          </Card>
+          <CardComponent title="Deck 2" />
         </Grid>
 
         {/* CARD 3 */}
         <Grid item xs={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">Deck 3</Typography>
-            </CardContent>
-          </Card>
+          <CardComponent title="Deck 3" />
         </Grid>
 
       </Grid>
