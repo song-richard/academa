@@ -5,6 +5,13 @@ type Query {
     card(id:Int!): Card
 }
 
+type Mutation {
+    addProfile(username:String!, email:String!, password:String!): Auth
+    addCardSet(title:String!, cardSet:[CardInput!]): CardSet
+    updateCardSet(id:Int, cardSet:[CardInput!]): CardSet
+    deleteCardSet(id:Int!): Profile
+}
+
 type Profile {
     _id: ID!
     username: String
@@ -25,4 +32,9 @@ type Card {
     description: String
     isViewed: Boolean
 }
+
+input CardInput {
+    term: String!
+    description: String!
+  }
 `
