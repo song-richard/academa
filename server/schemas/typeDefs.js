@@ -19,4 +19,10 @@ type CardSet {
     isCompleted: Boolean
 }
 
+type Card {
+    _id: Int!
+    term: String
+    description: String
+    isViewed: Boolean
+}
 `
