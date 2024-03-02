@@ -11,4 +11,12 @@ type Profile {
     email: String
     cardSets: [CardSet]
 }
+
+type CardSet {
+    _id: Int!
+    title: String!
+    cards: [Card]
+    isCompleted: Boolean
+}
+
 `
