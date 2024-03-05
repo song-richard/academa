@@ -37,4 +37,6 @@ input CardInput {
     term: String!
     description: String!
   }
-`
+`;
+
+module.exports = typeDefs;
