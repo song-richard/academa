@@ -1,3 +1,6 @@
+//Apollo
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
 import { Content } from "./Components/Content";
