@@ -9,6 +9,11 @@ import { ChatBot } from "./Components/ChatBot";
 // import { Login } from "./Components/Login";
 // import { Logout } from "./Components/Logout";
 
+//Apollo Client
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
