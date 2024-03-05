@@ -3,3 +3,28 @@
     "@auth0/auth0-react": "^2.2.4"
   }
 }
+{
+  "name": "academa",
+  "version": "1.0.0",
+  "description": "online learning platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "start": "node server/server.js --ignore client",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/song-richard/academa/issues"
+  },
+  "homepage": "https://github.com/song-richard/academa#readme",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
