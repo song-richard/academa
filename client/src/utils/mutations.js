@@ -26,3 +26,15 @@ export const UPDATE_CARDSET = gql`
         }
     }
 `;
+
+export const DELETE_CARDSET = gql`
+    mutation deleteCardSet($id: String) {
+        deleteCardSet(id: $id) {
+            _id
+            cardSets {
+                _id
+                title
+            }
+        }
+    }
+`;
