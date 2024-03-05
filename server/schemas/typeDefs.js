@@ -1,6 +1,8 @@
 const typeDefs = `
 type Query {
     profile: Profile
+    profiles: [Profile]
+    me: Profile
     cardSets(id:Int!, amount:Int): [CardSet]
     card(id:Int!): Card
 }
@@ -10,6 +12,7 @@ type Mutation {
     addCardSet(title:String!, cardSet:[CardInput!]): CardSet
     updateCardSet(id:Int, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:Int!): Profile
+    login(email:String!, password:String!): Profile
 }
 
 type Profile {
