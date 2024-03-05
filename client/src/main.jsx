@@ -1,22 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-
-// require('dotenv').config();
-
 import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from '@auth0/auth0-react';
+import App from './App';
 
-const domain = '';
-const clientId = '';
+const root = createRoot(document.getElementById('root'));
+const domain = import.meta.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = import.meta.env.REACT_APP_AUTH0_CLIENT_ID;
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
-
-ReactDOM.render(
+root.render(
 <Auth0Provider
     domain={domain}
     clientId={clientId}
@@ -26,5 +16,4 @@ ReactDOM.render(
   >
     <App />
   </Auth0Provider>,
-  document.getElementById('root')
 );
