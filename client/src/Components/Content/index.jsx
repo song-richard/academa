@@ -4,30 +4,28 @@ import CardComponent from './CardComponent'
 //MUI Imports
 import { Typography, Grid } from '@mui/material';
 
+//Query Imports
+import { GET_CARDSETS } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
+
 export const Content = () => {
+
+  const { loading, error, data } = useQuery(GET_CARDSETS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <>
       <Typography variant="h5" gutterBottom>
         Current Decks
       </Typography>
-
       <Grid container spacing={2}>
-
-        {/* CARD 1 */}
-        <Grid item xs={4}>
-          <CardComponent title="Deck 1" />
-        </Grid>
-
-        {/* CARD 2 */}
-        <Grid item xs={4}>
-          <CardComponent title="Deck 2" />
-        </Grid>
-
-        {/* CARD 3 */}
-        <Grid item xs={4}>
-          <CardComponent title="Deck 3" />
-        </Grid>
-
+        {data.cardSets.map(cardSet => (
+          <Grid item xs={4} key={cardSet._id}>
+            <CardComponent title={cardSet.title} id={cardSet._id} />
+          </Grid>
+        ))}
       </Grid>
     </>
   );
