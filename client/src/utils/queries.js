@@ -8,3 +8,12 @@ export const GET_Profiles = gql`
         }
     }
 `;
+
+export const GET_Profile = gql`
+    query profile($profileId: ID!) {
+        profile(profileId: $profileId) {
+            _id
+            username
+        }
+    }
+`;
