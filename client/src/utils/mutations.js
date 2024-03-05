@@ -8,3 +8,12 @@ export const ADD_PROFILE = gql`
         }
     }
 `;
+
+export const ADD_CARDSET = gql`
+    mutation addCardSet($title: String, $cardSet: CardInput) {
+        addCardSet(title: $title, cardSet: $cardSet) {
+            _id
+            title
+        }
+    }
+`;
