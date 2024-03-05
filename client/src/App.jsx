@@ -6,6 +6,10 @@ import { Header } from "./Components/Header";
 import { Content } from "./Components/Content";
 import { ChatBot } from "./Components/ChatBot";
 
+//GraphQL Queries
+import { GET_PROFILES } from './utils/queries';
+
+//COMMENTED OUT UNTIL AUTHO IS IN WORKING STATE - 03/05/2024
 // import { Login } from "./Components/Login";
 // import { Logout } from "./Components/Logout";
 
@@ -21,8 +25,9 @@ function App() {
       <Header />
       <Content />
       <Footer />
-
       <ChatBot />
+
+      {/* COMMENTED OUT UNTIL AUTHO IS IN WORKING STATE - 03/05/2024 */}
       {/* <Login />
       <Logout /> */}
     </ApolloProvider>
