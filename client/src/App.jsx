@@ -1,6 +1,5 @@
 //Apollo Imports
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { useQuery } from '@apollo/client';
 
 //Component Imports
 import { Footer } from "./Components/Footer";
