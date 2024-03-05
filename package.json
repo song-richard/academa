@@ -1,9 +1,8 @@
 {
   "dependencies": {
-    "@auth0/auth0-react": "^2.2.4"
-  }
-}
-{
+    "@auth0/auth0-react": "^2.2.4",
+    "concurrently": "^8.2.2"
+  },
   "name": "academa",
   "version": "1.0.0",
   "description": "online learning platform",
@@ -15,15 +14,11 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
-  }, 
-    
+  },
   "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/song-richard/academa/issues"
   },
-  "homepage": "https://github.com/song-richard/academa#readme",
-  "dependencies": {
-    "concurrently": "^8.2.2"
-  }
+  "homepage": "https://github.com/song-richard/academa#readme"
 }
