@@ -6,12 +6,30 @@ import { Typography, Card, CardContent } from '@mui/material';
 //Apollo Imports
 import { useQuery } from '@apollo/client';
 
-export default function CardComponent({ title }) {
-    return (
-      <Card>
-        <CardContent>
-          <Typography variant="h6">{title}</Typography>
-        </CardContent>
-      </Card>
-    );
-  };
+//Query Imports
+import { GET_CARDSETS } from '../../utils/queries';
+
+export default function CardComponent({ title, id }) {
+  const { loading, error, data } = useQuery(GET_CARDSETS, {
+    variables: { id },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h6">{title}</Typography>
+        <ul>
+          {data.cardSets.map(cardSet => (
+            <li key={cardSet._id}>
+              <Typography>{cardSet.title}</Typography>
+              <Typography>Is Completed: {cardSet.isCompleted ? 'Yes' : 'No'}</Typography>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
+  );
+}
