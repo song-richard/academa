@@ -17,3 +17,13 @@ export const GET_Profile = gql`
         }
     }
 `;
+
+export const GET_cardSets = gql`
+    query cardSets($id: Int!) {
+        cardSets(id: $id) {
+            _id
+            title
+            isCompleted
+        }
+    }
+`;
