@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 //MUI IMPORTS
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
 export const Header = () => {
+  const [showLogin, setShowLogin] = useState(false);
+  
+
   return (
     <>
       <AppBar position='static'>
