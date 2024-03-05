@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_Profiles = gql`
+export const GET_PROFILES = gql`
     query profiles {
         profiles {
             _id
@@ -9,7 +9,7 @@ export const GET_Profiles = gql`
     }
 `;
 
-export const GET_Profile = gql`
+export const GET_PROFILE = gql`
     query profile($profileId: ID!) {
         profile(profileId: $profileId) {
             _id
@@ -18,7 +18,7 @@ export const GET_Profile = gql`
     }
 `;
 
-export const GET_cardSets = gql`
+export const GET_CARDSETS = gql`
     query cardSets($id: Int!) {
         cardSets(id: $id) {
             _id
