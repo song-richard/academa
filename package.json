@@ -1,4 +1,9 @@
 {
+  "dependencies": {
+    "@auth0/auth0-react": "^2.2.4"
+  }
+}
+{
   "name": "academa",
   "version": "1.0.0",
   "description": "online learning platform",
