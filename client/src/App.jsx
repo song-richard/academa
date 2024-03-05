@@ -17,7 +17,7 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <>
+    <ApolloProvider>
       <Header />
       <Content />
       <Footer />
@@ -25,7 +25,7 @@ function App() {
       <ChatBot />
       {/* <Login />
       <Logout /> */}
-    </>
+    </ApolloProvider>
   );
 };
 
