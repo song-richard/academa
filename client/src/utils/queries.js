@@ -27,3 +27,13 @@ export const GET_CARDSETS = gql`
         }
     }
 `;
+
+export const GET_CARD = gql`
+    query card($id: Int!) {
+        card(id: $id) {
+            _id
+            term
+            description
+        }
+    }
+`;
