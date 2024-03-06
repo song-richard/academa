@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
-
-
-
+import  { useState } from 'react';
 //MUI IMPORTS
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+//auth0 hook
+import { useAuth0 } from '@auth0/auth0-react';
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+
+};
 
 export const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
-  
-  const handleLoginClick = () => {
-    setShowLogin(true);
-  };
-
-  const handleCloseLogin = () => {
-    setShowLogin(false);
-  };
 
   return (
     <>
@@ -23,7 +21,8 @@ export const Header = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Academa
           </Typography>
-          <Button color="inherit" onClick={handleLoginClick}>Login</Button>
+          <LoginButton />
+          {/* <Button color="inherit" onClick={LoginButton}>Login</Button> */}
           <Button color="inherit">Signup</Button>
         </Toolbar>
       </AppBar>
