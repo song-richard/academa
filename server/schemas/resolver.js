@@ -33,8 +33,8 @@ const resolvers = {
   Mutation: {
     addProfile: async (parent, { username, email, password }) => {
       const profile = await Profile.create({ username, email, password });
-      const token = signToken(profile);
-      return { token, profile };
+      // const token = signToken(profile);
+      return profile;
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
@@ -47,32 +47,42 @@ const resolvers = {
         throw AuthenticationError;
       }
       // const token = signToken(profile);
-      return { profile };
+      return profile;
     },
 
     addCardSet: async (parent, { title, cardSet }) => {
+      console.log("first log")
       const newCardSet = await CardSet.create({ title });
-
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
-        const id = i + 1;
-        const newCard = await Card.create({ term, description, _id: id});
-
+        const newCard = await Card.create({ term, description});
+        
+        console.log("second log")
         await CardSet.findOneAndUpdate(
           { _id: newCardSet._id },
-          { $push: { cards: newCard } },
+          { $push: { cards: newCard._id } },
           { new: true }
         );
       }
+      const addedCardSet = await CardSet.findById({ _id: newCardSet._id }).populate('cards')
 
-      return newCardSet;
+      return addedCardSet;
     },
     updateCardSet: async (parent, { id, cardSet }) => {
+      let newCards = [];
+      for (let i = 0; i < cardSet.length; i++) {
+        const { term, description } = cardSet[i];
+        const newCard = await Card.create({ term, description});
+
+        newCards.push(newCard);
+      }
+
       const updatedCardSet = await CardSet.findOneAndUpdate(
         { _id: id },
-        { cardSet },
+        { cards: newCards },
         { new: true }
       );
+
       return updatedCardSet;
     },
     deleteCardSet: async (parent, { id }) => {

@@ -3,17 +3,13 @@ const Card = require("./Card");
 
 const cardSetSchema = new Schema(
   {
-    _id: {
-      type: Number,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
     },
     title: {
       type: String,
-      minLength: 15,
+      minLength: 3,
       maxLength: 500,
     },
     completed: {

@@ -23,14 +23,14 @@ type Profile {
 }
 
 type CardSet {
-    _id: Int!
+    _id: ID!
     title: String!
     cards: [Card]
     isCompleted: Boolean
 }
 
 type Card {
-    _id: Int!
+    _id: ID!
     term: String
     description: String
     isViewed: Boolean
