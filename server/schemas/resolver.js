@@ -46,8 +46,8 @@ const resolvers = {
       if (!correctPw) {
         throw AuthenticationError;
       }
-      const token = signToken(profile);
-      return { token, profile };
+      // const token = signToken(profile);
+      return { profile };
     },
 
     addCardSet: async (parent, { title, cardSet }) => {
@@ -55,11 +55,12 @@ const resolvers = {
 
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
-        const newCard = await Card.create({ term, description });
+        const id = i + 1;
+        const newCard = await Card.create({ term, description, _id: id});
 
         await CardSet.findOneAndUpdate(
           { _id: newCardSet._id },
-          { $push: { cards: newCard._id } },
+          { $push: { cards: newCard } },
           { new: true }
         );
       }
@@ -80,3 +81,5 @@ const resolvers = {
     },
   },
 };
+
+module.exports = resolvers;
