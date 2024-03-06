@@ -14,11 +14,12 @@ console.log("model", model);
 
 // With a `StructuredOutputParser` we can define a schema for the output.
 const parser = StructuredOutputParser.fromNamesAndDescriptions({
-    code: "Javascript code that answers the user's question",
-    explanation: "detailed explanation of the example code provided",
-  });
+  code: "Learning expert that answers the user's question",
+  explanation:
+    "detailed explanation of the question asked by the user with examples",
+});
 
 // Get the format instructions from the parser
 const formatInstructions = parser.getFormatInstructions();
 
-  module.exports = { model, formatInstructions };
+module.exports = { model, formatInstructions };
