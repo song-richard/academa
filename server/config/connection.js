@@ -1,5 +1,19 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/tech-friends');
+const connectDB = async () => {
+  try {
+    await mongoose.connect(import.meta.env.MONGODB_URI || 3001, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    });
 
-module.exports = mongoose.connection;
+    console.log('MongoDB Connected...');
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
