@@ -74,14 +74,14 @@ const resolvers = {
         const { term, description } = cardSet[i];
         const newCard = await Card.create({ term, description});
 
-        newCards.push(newCard);
+        newCards.push(newCard._id);
       }
 
       const updatedCardSet = await CardSet.findOneAndUpdate(
         { _id: id },
-        { cards: newCards },
+        { cards: newCards},
         { new: true }
-      );
+      ).populate('cards');
 
       return updatedCardSet;
     },
