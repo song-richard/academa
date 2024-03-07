@@ -8,7 +8,7 @@ type Query {
 }
 
 type Mutation {
-    addProfile(username:String!, email:String!, password:String!): Profile
+    addProfile(name:String!, email:String!): Profile
     addCardSet(title:String!, cardSet:[CardInput!]): Profile
     updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:ID!): Profile
