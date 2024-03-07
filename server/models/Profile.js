@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const CardSet = require('./CardSet');
 
 const profileSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true,
     unique: true,
@@ -15,11 +15,11 @@ const profileSchema = new Schema({
     unique: true,
     match: [/.+@.+\..+/, 'Must match an email address!'],
   },
-  // password: {
-  //   type: String,
-  //   required: true,
-  //   minlength: 5,
-  // },
+  password: {
+    type: String,
+    required: true,
+    minlength: 5,
+  },
   cardSets: [
     {
       type: Schema.Types.ObjectId,
