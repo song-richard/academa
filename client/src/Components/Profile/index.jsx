@@ -2,7 +2,6 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {useMutation} from '@apollo/client';
 import { ADD_PROFILE } from '../../utils/mutations';
-
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
