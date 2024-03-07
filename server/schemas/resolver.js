@@ -33,10 +33,10 @@ const resolvers = {
     },
   },
   Mutation: {
-    addProfile: async (parent, { name, email }) => {
-      const profile = await Profile.create({ name, email});
-      // const token = signToken(profile);
-      return profile;
+    addProfile: async (parent, { username, email, password }) => {
+      const profile = await Profile.create({ username, email, password});
+      const token = signToken(profile);
+      return { token, profile };
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
