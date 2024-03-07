@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const SignupPage = () => {
     //State of form
@@ -22,7 +23,9 @@ const SignupPage = () => {
             const { data } = await addProfile(ADD_PROFILE,{
                 variables: { ...formState }
             });
-            console.log(data);
+            const { token, profile } = data.addProfile;
+            console.log(token, profile);
+            Auth.login(token);
             setFormState({ 
                 username: '',
                 email: '', 
