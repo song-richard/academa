@@ -52,25 +52,23 @@ const resolvers = {
       return profile;
     },
 
-    addCardSet: async (parent, { title, cardSet }) => {
-      console.log("first log")
+    addCardSet: async (parent, { title, cardSet, name }) => {
       const newCardSet = await CardSet.create({ title });
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
         const newCard = await Card.create({ term, description});
         
-        console.log("second log")
         await CardSet.findOneAndUpdate(
           { _id: newCardSet._id },
           { $push: { cards: newCard._id } },
           { new: true }
         );
       }
-      const addedCardSet = await CardSet.findById({ _id: newCardSet._id }).populate('cards');
+      const addedCardSet = await CardSet.findById({ _id: newCardSet._id });
 
-      const addToProfile = await Profile.findOneAndUpdate({})
+      const addToProfile = await Profile.findOneAndUpdate({user},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
 
-      return addedCardSet;
+      return addToProfile;
     },
     updateCardSet: async (parent, { id, cardSet }) => {
       let newCards = [];
