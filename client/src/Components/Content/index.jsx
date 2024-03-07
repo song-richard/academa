@@ -7,11 +7,15 @@ import { Typography, Grid } from '@mui/material';
 //Query Imports
 import { GET_CARDSETS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
-import { useMutation } from '@apollo/client';
+
+//Auth Imports
+import Auth from '../../utils/auth';
 
 export const Content = () => {
+  const profile = (Auth.getProfile()).data;
+
   const { loading, data } = useQuery(GET_CARDSETS, {
-    variables: { email: user.email },
+    variables: { id: profile._id},
   });
 
   const cardSets = data?.cardSets || [];
@@ -19,7 +23,7 @@ export const Content = () => {
 
 
   if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
+  // // if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
@@ -34,7 +38,7 @@ export const Content = () => {
             </Grid>
           ))
         ) : (
-          <button>Create Flashcards</button>
+          <button onClick={() => window.location.assign('/createCardSet')}>Create Flashcards</button>
         )}
       </Grid>
     </>
