@@ -17,13 +17,15 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    cardSets: async (parent, { id, amount }) => {
-      const params = id ? { _id: id } : {};
-      const cardSets = await CardSet.find(params).populate("cards");
-      if (amount) {
-        return cardSets.slice(0, amount);
-      }
-      return cardSets;
+    cardSets: async (parent, { email, amount }) => {
+      const params = email ? { email } : {};
+      const profile = Profile.findOne({ params }).populate("cardSets");
+      //Populate the cards for each card set TODO for later
+      // const cardSets = await CardSet.find(params).populate("cards");
+      // if (amount) {
+      //   return cardSets.slice(0, amount);
+      // }
+      return profile;
     },
     card: async (parent, { id }) => {
       const params = id ? { _id: id } : {};
@@ -64,7 +66,9 @@ const resolvers = {
           { new: true }
         );
       }
-      const addedCardSet = await CardSet.findById({ _id: newCardSet._id }).populate('cards')
+      const addedCardSet = await CardSet.findById({ _id: newCardSet._id }).populate('cards');
+
+      const addToProfile = await Profile.findOneAndUpdate({})
 
       return addedCardSet;
     },

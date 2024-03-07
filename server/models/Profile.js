@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const CardSet = require('./CardSet');
 
 const profileSchema = new Schema({
-  username: {
+  name: {
     type: String,
     required: true,
     unique: true,

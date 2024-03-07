@@ -8,9 +8,14 @@ import { Typography, Grid } from '@mui/material';
 import { GET_CARDSETS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
-export const Content = () => {
+//Auth Imports
+import { useAuth0 } from '@auth0/auth0-react';
 
-  const { loading, error, data } = useQuery(GET_CARDSETS);
+export const Content = () => {
+  const { user } = useAuth0();
+  const { loading, error, data } = useQuery(GET_CARDSETS, {
+    variables: { email: user.email },
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

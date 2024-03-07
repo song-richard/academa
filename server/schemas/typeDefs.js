@@ -3,13 +3,13 @@ type Query {
     profile: Profile
     profiles: [Profile]
     me: Profile
-    cardSets(id:Int!, amount:Int): [CardSet]
+    cardSets(email:String!, amount:Int): Profile
     card(id:Int!): Card
 }
 
 type Mutation {
     addProfile(username:String!, email:String!, password:String!): Profile
-    addCardSet(title:String!, cardSet:[CardInput!]): CardSet
+    addCardSet(title:String!, cardSet:[CardInput!]): Profile
     updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:ID!): Profile
     login(email:String!, password:String!): Profile
