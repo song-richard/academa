@@ -1,8 +1,9 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 //MUI IMPORTS
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 //auth0 hook
 import { useAuth0 } from '@auth0/auth0-react';
+import Auth from '../../utils/auth';
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -10,6 +11,10 @@ const LoginButton = () => {
   return <button onClick={() => loginWithRedirect()}>Log In</button>;
 
 };
+
+const redirect = (route) => {
+ window.location.assign(route);
+}
 
 export const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -21,11 +26,18 @@ export const Header = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Academa
           </Typography>
-          <LoginButton />
-          {/* <Button color="inherit" onClick={LoginButton}>Login</Button> */}
-          <Button color="inherit">Signup</Button>
+          {/* <LoginButton /> */}
+
+          {Auth.loggedIn() ? (
+            <Button color="inherit" onClick={Auth.logout}>Logout</Button>
+          ): (
+            <div>
+              <Button color="inherit" onClick={()=> redirect('/login')}>Login</Button>
+              <Button color="inherit" onClick={()=> redirect('/signup')}>Signup</Button>
+            </div>
+          )}
         </Toolbar>
-      </AppBar>
+    </AppBar >
     </>
   )
 }
