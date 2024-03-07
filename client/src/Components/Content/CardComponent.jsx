@@ -9,9 +9,13 @@ import { useQuery } from '@apollo/client';
 //Query Imports
 import { GET_CARDSETS } from '../../utils/queries';
 
+//Auth Imports
+import { useAuth0 } from '@auth0/auth0-react';
+
 export default function CardComponent({ title, id }) {
+ const { user } = useAuth0();
   const { loading, error, data } = useQuery(GET_CARDSETS, {
-    variables: { id },
+    variables: { email: user.email },
   });
 
   if (loading) return <p>Loading...</p>;

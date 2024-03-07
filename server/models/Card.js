@@ -3,10 +3,6 @@ const { Schema, model } = require("mongoose");
 
 const cardSchema = new Schema(
   {
-    _id: {
-      type: Number,
-      required: true,
-    },
     term: {
       type: String,
       required: true,

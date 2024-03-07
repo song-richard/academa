@@ -17,13 +17,15 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    cardSets: async (parent, { id, amount }) => {
-      const params = id ? { _id: id } : {};
-      const cardSets = await CardSet.find(params).populate("cards");
-      if (amount) {
-        return cardSets.slice(0, amount);
-      }
-      return cardSets;
+    cardSets: async (parent, { email, amount }) => {
+      const params = email ? { email } : {};
+      const profile = Profile.findOne({ params }).populate("cardSets");
+      //Populate the cards for each card set TODO for later
+      // const cardSets = await CardSet.find(params).populate("cards");
+      // if (amount) {
+      //   return cardSets.slice(0, amount);
+      // }
+      return profile;
     },
     card: async (parent, { id }) => {
       const params = id ? { _id: id } : {};
@@ -31,10 +33,10 @@ const resolvers = {
     },
   },
   Mutation: {
-    addProfile: async (parent, { username, email, password }) => {
-      const profile = await Profile.create({ username, email, password });
-      const token = signToken(profile);
-      return { token, profile };
+    addProfile: async (parent, { name, email }) => {
+      const profile = await Profile.create({ name, email});
+      // const token = signToken(profile);
+      return profile;
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
@@ -47,32 +49,42 @@ const resolvers = {
         throw AuthenticationError;
       }
       // const token = signToken(profile);
-      return { profile };
+      return profile;
     },
 
-    addCardSet: async (parent, { title, cardSet }) => {
+    addCardSet: async (parent, { title, cardSet, name }) => {
       const newCardSet = await CardSet.create({ title });
-
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
-        const id = i + 1;
-        const newCard = await Card.create({ term, description, _id: id});
-
+        const newCard = await Card.create({ term, description});
+        
         await CardSet.findOneAndUpdate(
           { _id: newCardSet._id },
-          { $push: { cards: newCard } },
+          { $push: { cards: newCard._id } },
           { new: true }
         );
       }
+      const addedCardSet = await CardSet.findById({ _id: newCardSet._id });
 
-      return newCardSet;
+      const addToProfile = await Profile.findOneAndUpdate({user},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
+
+      return addToProfile;
     },
     updateCardSet: async (parent, { id, cardSet }) => {
+      let newCards = [];
+      for (let i = 0; i < cardSet.length; i++) {
+        const { term, description } = cardSet[i];
+        const newCard = await Card.create({ term, description});
+
+        newCards.push(newCard._id);
+      }
+
       const updatedCardSet = await CardSet.findOneAndUpdate(
         { _id: id },
-        { cardSet },
+        { cards: newCards},
         { new: true }
-      );
+      ).populate('cards');
+
       return updatedCardSet;
     },
     deleteCardSet: async (parent, { id }) => {

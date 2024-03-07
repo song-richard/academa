@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_PROFILE = gql`
-    mutation addProfile($username: String, $email: String, $password: String) {
-        addProfile(username: $username, email: $email, password: $password) {
+    mutation addProfile($name: String, $email: String) {
+        addProfile(name: $name, email: $email) {
             _id
             username
         }
@@ -10,10 +10,13 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_CARDSET = gql`
-    mutation addCardSet($title: String, $cardSet: CardInput) {
-        addCardSet(title: $title, cardSet: $cardSet) {
+    mutation addCardSet($title: String, $cardSet: CardInput, $name: String!) {
+        addCardSet(title: $title, cardSet: $cardSet, name: $name) {
             _id
-            title
+            cardSets {
+                _id
+                title
+            }
         }
     }
 `;
