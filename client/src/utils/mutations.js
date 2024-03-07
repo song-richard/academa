@@ -45,3 +45,15 @@ export const DELETE_CARDSET = gql`
         }
     }
 `;
+
+export const LOGIN = gql`
+    mutation login($user: String!, $password: String!) {
+        login(user: $user, password: $password) {
+            token
+            profile {
+                _id
+                username
+            }
+        }
+    }
+`;
