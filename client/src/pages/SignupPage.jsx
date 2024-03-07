@@ -7,20 +7,22 @@ const SignupPage = () => {
     //State of form
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
+    //Mutation for adding profile
+    const [addProfile, {data}] = useMutation(ADD_PROFILE);
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormState({
             ...formState,
             [name]: value
         });
-        console.log(formState)
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
         try {
-            const { data } = await addProfile(ADD_PROFILE,{
+            const { data } = await addProfile({
                 variables: { ...formState }
             });
             const { token, profile } = data.addProfile;
