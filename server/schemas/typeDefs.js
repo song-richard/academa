@@ -12,7 +12,7 @@ type Mutation {
     addCardSet(title:String!, cardSet:[CardInput!], name:String!): Profile
     updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:ID!): Profile
-    login(email:String!, password:String!): Profile
+    login(user:String!, password:String!): Auth
 }
 
 type Profile {
