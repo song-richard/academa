@@ -8,7 +8,7 @@ type Query {
 }
 
 type Mutation {
-    addProfile(name:String!, email:String!): Profile
+    addProfile(username:String!, email:String!, password: String!): Auth
     addCardSet(title:String!, cardSet:[CardInput!], name:String!): Profile
     updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:ID!): Profile
@@ -34,6 +34,11 @@ type Card {
     term: String
     description: String
     isViewed: Boolean
+}
+
+type Auth {
+    token: ID!
+    profile: Profile
 }
 
 input CardInput {
