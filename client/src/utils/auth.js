@@ -13,6 +13,13 @@ class AuthService {
         window.location.reload();
     }
 
+    // Check if user is logged in
+    loggedIn() {
+        // Checks if there is a saved token and it's still valid
+        const token = this.getToken();
+        return !!token && !this.isTokenExpired(token);
+    }
+
     // get user data from JSON web token by decoding it
     getProfile() {
         return decode(this.getToken());
