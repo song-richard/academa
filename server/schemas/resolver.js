@@ -38,8 +38,8 @@ const resolvers = {
       const token = signToken(profile);
       return { token, profile };
     },
-    login: async (parent, { email, password }) => {
-      const profile = await Profile.findOne({ email });
+    login: async (parent, { user, password }) => {
+      const profile = await Profile.findOne({ $or: [{ username: user }, { email: user }]});
       if (!profile) {
         throw AuthenticationError;
       }
@@ -48,8 +48,8 @@ const resolvers = {
       if (!correctPw) {
         throw AuthenticationError;
       }
-      // const token = signToken(profile);
-      return profile;
+      const token = signToken(profile);
+      return { token, profile};
     },
 
     addCardSet: async (parent, { title, cardSet, name }) => {
