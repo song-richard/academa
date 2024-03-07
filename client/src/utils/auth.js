@@ -14,6 +14,10 @@ class AuthService {
         window.location.reload();
     }
 
+    // get user data from JSON web token by decoding it
+    getProfile() {
+        return decode(this.getToken());
+    }
 }
 
 export default new AuthService();
