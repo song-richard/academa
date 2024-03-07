@@ -1,16 +1,17 @@
-const { PromptTemplate } = require("langchain/prompts");
+const { PromptTemplate } = require("@langchain/core/prompts");
 const { model, formatInstructions } = require("./config/openaiWrapper");
 const inquirer = require("inquirer");
 
 // Uses the instantiated OpenAI wrapper, model, and makes a call based on input from inquirer
 const promptFunc = async (input) => {
   try {
+    
     // console.log(res);
 
     // Instantiation of a new object called "prompt" using the "PromptTemplate" class
     const prompt = new PromptTemplate({
       template:
-        "You are a leaning expert and will answer the user’s  questions thoroughly as possible.\n{question}",
+        "You are a leaning expert and will answer the user’s questions thoroughly as possible.\n{question}",
       inputVariables: ["question"],
       partialVariables: { format_instructions: formatInstructions },
     });
