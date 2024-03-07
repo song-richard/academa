@@ -17,13 +17,22 @@ const LoginPage = () => {
         });
     }
 
-    handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (event) => {
+        console.log(formState);
         event.preventDefault();
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
         try {
             const { data } = await login({
                 variables: { ...formState }
             });
-            Auth.login(data.login.token);
+            const { token } = await data.login;
+            Auth.login(token);
         } catch (e) {
             console.error(e);
         }
