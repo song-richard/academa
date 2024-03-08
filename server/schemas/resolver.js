@@ -21,10 +21,13 @@ const promptFunc = async (input) => {
 
     // Call the model with the formatted prompt
     const res = await model.call(promptInput);
-    console.log(await parser.parse(res));
-    return await parser.parse(res);
+    // console.log(await parser.parse(res));
+    console.log({res});
+    // return await parser.parse(res)
+    return res.trim();
   } catch (err) {
     console.error(err);
+    throw new Error("Error in the chatbot");
   }
 };
 
@@ -59,8 +62,14 @@ const resolvers = {
       return Card.findOne(params);
     },
     askLearningExpert: async (parent, { question }) => {
-      await promptFunc(question);
-      return "Learning expert that answers the user's question";
+      try {
+        const response = await promptFunc(question);
+        return response;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to get a response from the chatbot");
+      }     
+
     },
   },
   Mutation: {

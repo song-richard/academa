@@ -10,7 +10,7 @@ const model = new OpenAI({
   model: "gpt-3.5-turbo",
 });
 
-console.log("model", model);
+// console.log("model", model);
 
 // With a `StructuredOutputParser` we can define a schema for the output.
 const parser = StructuredOutputParser.fromNamesAndDescriptions({
