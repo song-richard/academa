@@ -66,7 +66,7 @@ const resolvers = {
       }
       const addedCardSet = await CardSet.findById({ _id: newCardSet._id });
 
-      const addToProfile = await Profile.findOneAndUpdate({userId},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
+      const addToProfile = await Profile.findOneAndUpdate({_id:userId},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
 
       return addToProfile;
     },
