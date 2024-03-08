@@ -87,21 +87,4 @@ const CreateCardSet = () => {
     </form>
 </div> */
 }
-
-{/* <div>
-<h1>Update a Card Set</h1>
-<form onSubmit={handleUpdateSubmit}>
-    <div>
-        <label htmlFor="title">Title:</label>
-        <input type="text" name="title" id="title" onChange={handleChange} />
-    </div>
-    <div>
-        <label htmlFor="cardSet">Card Set:</label>
-        <textarea name="cardSet" id="cardSet" onChange={handleChange}></textarea>
-    </div>
-    <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" id="name" onChange={handleChange} />
-    </div>
-    <button type="submit">Update Card Set</button>
-</form> */}
+export default CreateCardSet;
