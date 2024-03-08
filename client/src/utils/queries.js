@@ -10,8 +10,8 @@ export const GET_PROFILES = gql`
 `;
 
 export const GET_PROFILE = gql`
-    query profile($profileId: ID!) {
-        profile(profileId: $profileId) {
+    query profile {
+        profile {
             _id
             username
         }
@@ -19,8 +19,8 @@ export const GET_PROFILE = gql`
 `;
 
 export const GET_CARDSETS = gql`
-    query cardSets($email: String!) {
-        cardSets(email: $email) {
+    query cardSets {
+        cardSets {
             cardSets {
                 _id
                 title

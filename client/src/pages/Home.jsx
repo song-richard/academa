@@ -1,11 +1,10 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import {Content} from '../Components/Content';
+import Auth from '../utils/auth';
 
 const Home = () => {
-    const {user} = useAuth0();
     
     //Home page if user is logged in
-    if(user){
+    if(Auth.loggedIn()){
         return (<Content />);
     }
 
