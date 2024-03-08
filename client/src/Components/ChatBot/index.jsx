@@ -5,7 +5,7 @@ import { Typography, Card, CardContent } from "@mui/material";
 
 export const ChatBot = () => {
   const { loading, error, data } = useQuery(ASK_LEARNING_EXPERT, {
-    variables: { question: "What is the capital of France?" },
+    variables: { question: "What can I help you today?" },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
