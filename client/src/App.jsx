@@ -1,5 +1,6 @@
 //Apollo Imports
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { Outlet } from 'react-router-dom';
 
 //Component Imports
 import { Footer } from "./Components/Footer";
@@ -23,10 +24,13 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Header />
-      <Content />
-      <Footer />
-      <ChatBot />
+      <>
+        <Header />
+        {/* <Content /> */}
+        <Outlet />
+        <Footer />
+        <ChatBot />
+      </>
 
       {/* COMMENTED OUT UNTIL AUTHO IS IN WORKING STATE - 03/05/2024 */}
       {/* <Login />
