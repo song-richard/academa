@@ -1,15 +1,11 @@
 import auth from '../utils/auth';
 import { useState } from 'react';
-import {ADD_CARD_SET, UPDATE_CARDSET} from '../utils/mutations';
+import {ADD_CARD_SET} from '../utils/mutations';
 import { useMutation } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
-import aiGenerateCards from '../utils/aiGenerateCards';
-
 const CreateCardSet = () => {
     const { _id } = (auth.getProfile()).data;
     const [formState, setFormState] = useState({title: '', cardSet: '', name: ''});
     const [addCardSet, {error}] = useMutation(ADD_CARD_SET);
-    const history = useHistory();
 
   //form submission for adding a new card set
   // we have to create routes for this
@@ -20,8 +16,6 @@ const CreateCardSet = () => {
                 variables: {...formState, userId: _id}
             });
             console.log(data);
-            // redirect to dashboard
-            history.push('/dashboard');
         } catch (e) {
             console.error(e);
         }

@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {useMutation} from '@apollo/client';
-import {useHistory} from 'react-router-dom';
 import {UPDATE_CARDSET} from '../utils/mutations';
 import Auth from '../utils/auth';
 
@@ -8,7 +7,6 @@ import Auth from '../utils/auth';
 const UpdateCardSet = () => {
   const { _id } = (Auth.getProfile()).data;
   const [formState, setFormState] = useState({title: '', cardSet: '', name: ''});
-  const history = useHistory();
   const [updateCardSet, {error: updateError}] = useMutation(UPDATE_CARDSET);
 
 // form submission for updating a card set
@@ -19,7 +17,6 @@ const handleUpdateSubmit = async (event) => {
           variables: {...formState, userId: _id}
       });
       console.log(data);
-      history.push('/dashboard');
   } catch (e) {
       console.error(e);
   }

@@ -48,5 +48,4 @@ const GenerateAiCardsets = () => {
   );
 };
 
-
 export default GenerateAiCardsets;
