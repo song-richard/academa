@@ -52,7 +52,8 @@ const resolvers = {
       return { token, profile};
     },
 
-    addCardSet: async (parent, { title, cardSet, name }) => {
+    addCardSet: async (parent, { title, cardSet, userID }) => {
+      console.log(context);
       const newCardSet = await CardSet.create({ title });
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
@@ -66,7 +67,7 @@ const resolvers = {
       }
       const addedCardSet = await CardSet.findById({ _id: newCardSet._id });
 
-      const addToProfile = await Profile.findOneAndUpdate({user},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
+      const addToProfile = await Profile.findOneAndUpdate({_id: userID},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
 
       return addToProfile;
     },

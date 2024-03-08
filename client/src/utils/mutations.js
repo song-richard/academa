@@ -14,8 +14,8 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_CARDSET = gql`
-    mutation addCardSet($title: String, $cardSet: CardInput, $name: String!) {
-        addCardSet(title: $title, cardSet: $cardSet, name: $name) {
+    mutation addCardSet($title: String, $cardSet: CardInput, $userId: ID!) {
+        addCardSet(title: $title, cardSet: $cardSet, userId: $userId) {
             _id
             cardSets {
                 _id
