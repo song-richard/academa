@@ -1,5 +1,32 @@
 const { CardSet, Card, Profile } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const { model, formatInstructions, parser } = require("../chatbot/config/openaiWrapper");
+const { PromptTemplate } = require("@langchain/core/prompts");
+
+const promptFunc = async (input) => {
+  try {     
+
+    // Instantiation of a new object called "prompt" using the "PromptTemplate" class
+    const prompt = new PromptTemplate({
+      template:
+        "You are a leaning expert and will answer the user’s questions thoroughly as possible.\n{question}",
+      inputVariables: ["question"],
+      partialVariables: { format_instructions: formatInstructions },
+    });
+
+    // Format the prompt with the user input
+    const promptInput = await prompt.format({
+      question: input,
+    });
+
+    // Call the model with the formatted prompt
+    const res = await model.call(promptInput);
+    console.log(await parser.parse(res));
+    return await parser.parse(res);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const resolvers = {
   Query: {
@@ -30,6 +57,10 @@ const resolvers = {
     card: async (parent, { id }) => {
       const params = id ? { _id: id } : {};
       return Card.findOne(params);
+    },
+    askLearningExpert: async (parent, { question }) => {
+      await promptFunc(question);
+      return "Learning expert that answers the user's question";
     },
   },
   Mutation: {
@@ -92,6 +123,7 @@ const resolvers = {
       return deletedCardSet;
     },
   },
+  
 };
 
 module.exports = resolvers;

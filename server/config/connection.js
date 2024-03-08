@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(import.meta.env.MONGODB_URI || 3001, {
+    await mongoose.connect(process.env.MONGODB_URI || 3001, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -16,4 +16,11 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/academa', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  // useCreateIndex: true,
+  // useFindAndModify: false
+});
+
+module.exports = mongoose.connection;

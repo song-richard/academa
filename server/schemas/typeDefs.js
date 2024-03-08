@@ -5,6 +5,7 @@ type Query {
     me: Profile
     cardSets(email:String!, amount:Int): Profile
     card(id:Int!): Card
+    askLearningExpert(question: String!): String
 }
 
 type Mutation {
@@ -12,7 +13,8 @@ type Mutation {
     addCardSet(title:String!, cardSet:[CardInput!], name:String!): Profile
     updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:ID!): Profile
-    login(email:String!, password:String!): Profile
+    login(email:String!, password:String!): Profile    
+    
 }
 
 type Profile {
@@ -39,6 +41,13 @@ type Card {
 input CardInput {
     term: String!
     description: String!
+  }
+
+
+type Question {
+    id: ID!
+    content: String!
+    response: String
   }
 `;
 

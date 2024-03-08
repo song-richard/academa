@@ -22,4 +22,4 @@ const parser = StructuredOutputParser.fromNamesAndDescriptions({
 // Get the format instructions from the parser
 const formatInstructions = parser.getFormatInstructions();
 
-module.exports = { model, formatInstructions };
+module.exports = { model, formatInstructions, parser };
