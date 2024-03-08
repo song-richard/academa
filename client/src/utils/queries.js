@@ -43,3 +43,9 @@ export const GET_CARD = gql`
         }
     }
 `;
+
+export const ASK_LEARNING_EXPERT = gql`
+    query askLearningExpert($question: String!) {
+        askLearningExpert(question: $question)
+    }
+`;

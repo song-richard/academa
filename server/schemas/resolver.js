@@ -1,5 +1,35 @@
 const { CardSet, Card, Profile } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const { model, formatInstructions, parser } = require("../chatbot/config/openaiWrapper");
+const { PromptTemplate } = require("@langchain/core/prompts");
+
+const promptFunc = async (input) => {
+  try {     
+
+    // Instantiation of a new object called "prompt" using the "PromptTemplate" class
+    const prompt = new PromptTemplate({
+      template:
+        "You are a leaning expert and will answer the user’s questions thoroughly as possible.\n{question}",
+      inputVariables: ["question"],
+      partialVariables: { format_instructions: formatInstructions },
+    });
+
+    // Format the prompt with the user input
+    const promptInput = await prompt.format({
+      question: input,
+    });
+
+    // Call the model with the formatted prompt
+    const res = await model.call(promptInput);
+    // console.log(await parser.parse(res));
+    console.log({res});
+    // return await parser.parse(res)
+    return res.trim();
+  } catch (err) {
+    console.error(err);
+    throw new Error("Error in the chatbot");
+  }
+};
 
 const resolvers = {
   Query: {
@@ -30,6 +60,16 @@ const resolvers = {
     card: async (parent, { id }) => {
       const params = id ? { _id: id } : {};
       return Card.findOne(params);
+    },
+    askLearningExpert: async (parent, { question }) => {
+      try {
+        const response = await promptFunc(question);
+        return response;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to get a response from the chatbot");
+      }     
+
     },
   },
   Mutation: {
@@ -92,6 +132,7 @@ const resolvers = {
       return deletedCardSet;
     },
   },
+  
 };
 
 module.exports = resolvers;

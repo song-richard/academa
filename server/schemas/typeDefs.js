@@ -5,6 +5,7 @@ type Query {
     me: Profile
     cardSets: Profile
     card(id:Int!): Card
+    askLearningExpert(question: String!): String
 }
 
 type Mutation {
@@ -44,6 +45,13 @@ type Auth {
 input CardInput {
     term: String!
     description: String!
+  }
+
+
+type Question {
+    id: ID!
+    content: String!
+    response: String
   }
 `;
 
