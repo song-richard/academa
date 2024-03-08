@@ -19,10 +19,10 @@ const DeleteCardSet = ({ id }) => {
         console.error('Error deleting flashcard set:', error);
       }
     };
-  
+
     return (
       <button onClick={handleDelete}>Delete Card Set</button>
     );
   };
-  
+
   export default DeleteCardSet;
