@@ -6,12 +6,11 @@ import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 
 const CreateCardSet = () => {
-    const { _id } = auth.getProfile();
+    const { _id } = (auth.getProfile()).data;
     const [formState, setFormState] = useState({title: '', cardSet: '', name: ''});
     const [addCardSet, {error}] = useMutation(ADD_CARD_SET);
     const [updateCardSet, {error: updateError}] = useMutation(UPDATE_CARDSET);
     const history = useHistory();
-
 
   //form submission for adding a new card set
   // we have to create routes for this
@@ -29,6 +28,7 @@ const CreateCardSet = () => {
         }
     };
 
+// form submission for updating a card set
     const handleUpdateSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -71,3 +71,21 @@ const CreateCardSet = () => {
         </div>
     );
 }
+
+{/* <div>
+<h1>Update a Card Set</h1>
+<form onSubmit={handleUpdateSubmit}>
+    <div>
+        <label htmlFor="title">Title:</label>
+        <input type="text" name="title" id="title" onChange={handleChange} />
+    </div>
+    <div>
+        <label htmlFor="cardSet">Card Set:</label>
+        <textarea name="cardSet" id="cardSet" onChange={handleChange}></textarea>
+    </div>
+    <div>
+        <label htmlFor="name">Name:</label>
+        <input type="text" name="name" id="name" onChange={handleChange} />
+    </div>
+    <button type="submit">Update Card Set</button>
+</form> */}
