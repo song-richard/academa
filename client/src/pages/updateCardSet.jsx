@@ -6,12 +6,10 @@ import Auth from '../utils/auth';
 
 // need to create routes
 const UpdateCardSet = () => {
-
   const { _id } = (Auth.getProfile()).data;
   const [formState, setFormState] = useState({title: '', cardSet: '', name: ''});
   const history = useHistory();
   const [updateCardSet, {error: updateError}] = useMutation(UPDATE_CARDSET);
-
 
 // form submission for updating a card set
 const handleUpdateSubmit = async (event) => {
@@ -36,7 +34,6 @@ const handleChange = (event) => {
 };
 
 return (  
-
  <div>
 <h1>Update a Card Set</h1>
 <form onSubmit={handleUpdateSubmit}>

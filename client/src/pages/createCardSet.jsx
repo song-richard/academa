@@ -27,21 +27,6 @@ const CreateCardSet = () => {
         }
     };
 
-    // form submission for generating a card set
-    const handleAIFormSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const {data} = await aiGenerateCards({
-                variables: {...formState, userId: _id}
-            });
-            console.log(data);
-            history.push('/dashboard');
-        } catch (e) {
-            console.error(e);
-        }
-    };
-
-
     const handleChange = (event) => {
         const {name, value} = event.target;
         setFormState({
@@ -71,8 +56,7 @@ const CreateCardSet = () => {
         </div>
     );
 }
-{
-    /* <div>
+ <div>
     <h1>Create a Card Set</h1>
     <form onSubmit={handleAIFormSubmit}>
         <div>
@@ -85,6 +69,5 @@ const CreateCardSet = () => {
         </div>
         <button type="submit">Create Card Set</button>
     </form>
-</div> */
-}
+</div>
 export default CreateCardSet;
