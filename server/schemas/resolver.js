@@ -7,25 +7,25 @@ const resolvers = {
       return Profile.find();
     },
 
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+    profile: async (parent, args, { user }) => {
+      return Profile.findOne({ _id: user._id });
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return Profile.findOne({ _id: context.user._id });
+    me: async (parent, args, { user }) => {
+      if (user) {
+        return Profile.findOne({ _id: user._id });
       }
       throw AuthenticationError;
     },
-    cardSets: async (parent, { email, amount }) => {
-      const params = email ? { email } : {};
-      const profile = Profile.findOne({ params }).populate("cardSets");
+    cardSets: async (parent, args, { user }) => {
+      const profile = Profile.findOne({ _id: user._id }).populate("cardSets");
       //Populate the cards for each card set TODO for later
       // const cardSets = await CardSet.find(params).populate("cards");
       // if (amount) {
       //   return cardSets.slice(0, amount);
       // }
       return profile;
+
     },
     card: async (parent, { id }) => {
       const params = id ? { _id: id } : {};
@@ -52,8 +52,7 @@ const resolvers = {
       return { token, profile};
     },
 
-    addCardSet: async (parent, { title, cardSet, userID }) => {
-      console.log(context);
+    addCardSet: async (parent, { title, cardSet}, { user }) => {
       const newCardSet = await CardSet.create({ title });
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
@@ -67,7 +66,7 @@ const resolvers = {
       }
       const addedCardSet = await CardSet.findById({ _id: newCardSet._id });
 
-      const addToProfile = await Profile.findOneAndUpdate({_id: userID},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
+      const addToProfile = await Profile.findOneAndUpdate({_id: user._id},{ $push: { cardSets: addedCardSet._id }},{new: true}).populate('cardSets');
 
       return addToProfile;
     },
