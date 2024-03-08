@@ -14,12 +14,8 @@ import Auth from '../../utils/auth';
 export const Content = () => {
   const profile = (Auth.getProfile()).data;
 
-  const { loading, data } = useQuery(GET_CARDSETS, {
-    variables: { id: profile._id},
-  });
-
-  const cardSets = data?.cardSets || [];
-  console.log(cardSets);
+  const { loading, data } = useQuery(GET_CARDSETS);
+  const {cardSets} = data?.cardSets || [];
 
 
   if (loading) return <p>Loading...</p>;
