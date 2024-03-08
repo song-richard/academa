@@ -9,12 +9,16 @@ type Query {
 }
 
 type Mutation {
-    addProfile(name:String!, email:String!): Profile
+    addProfile(username:String!, email:String!, password: String!): Auth
     addCardSet(title:String!, cardSet:[CardInput!], name:String!): Profile
     updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
     deleteCardSet(id:ID!): Profile
+<<<<<<< HEAD
     login(email:String!, password:String!): Profile    
     
+=======
+    login(user:String!, password:String!): Auth
+>>>>>>> d34f26bf09dbbd3098af0695cd087ed2a0321409
 }
 
 type Profile {
@@ -36,6 +40,11 @@ type Card {
     term: String
     description: String
     isViewed: Boolean
+}
+
+type Auth {
+    token: ID!
+    profile: Profile
 }
 
 input CardInput {

@@ -1,5 +1,4 @@
 import decode from 'jwt-decode';
-import { useAuth0 } from '@auth0/auth0-react';
 
 class AuthService {
     login = (idToken) => {
@@ -14,6 +13,13 @@ class AuthService {
         window.location.reload();
     }
 
+    // Check if user is logged in
+    loggedIn() {
+        // Checks if there is a saved token and it's still valid
+        const token = this.getToken();
+        return !!token && !this.isTokenExpired(token);
+    }
+
     // get user data from JSON web token by decoding it
     getProfile() {
         return decode(this.getToken());
@@ -22,7 +28,19 @@ class AuthService {
     getToken() {
         // Retrieves the user token from localStorage
         return localStorage.getItem('id_token');
-      }
+    }
+
+    // check if token is expired
+    isTokenExpired(token) {
+        try {
+            const decoded = decode(token);
+            if (decoded.exp < Date.now() / 1000) {
+                return true;
+            } else return false;
+        } catch (err) {
+            return false;
+        }
+    }
 }
 
 export default new AuthService();
