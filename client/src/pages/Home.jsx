@@ -1,9 +1,10 @@
 import {Content} from '../Components/Content';
+import Auth from '../utils/auth';
 
 const Home = () => {
     
     //Home page if user is logged in
-    if(user){
+    if(Auth.loggedIn()){
         return (<Content />);
     }
 
