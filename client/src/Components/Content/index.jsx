@@ -7,22 +7,15 @@ import { Typography, Grid } from '@mui/material';
 //Query Imports
 import { GET_CARDSETS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
-import { useMutation } from '@apollo/client';
-import { ADD_PROFILE } from '../../utils/mutations';
 
 //Auth Imports
-import { useAuth0 } from '@auth0/auth0-react';
+import Auth from '../../utils/auth';
 
 export const Content = () => {
-  const { user, isAuthenticated } = useAuth0();
-  
-  if (isAuthenticated) {
-    const [addProfile, { data }] = useMutation(ADD_PROFILE);
-    addProfile({ variables: { name: user.name, email: user.email } });
-  }
+  const profile = (Auth.getProfile()).data;
 
   const { loading, data } = useQuery(GET_CARDSETS, {
-    variables: { email: user.email },
+    variables: { id: profile._id},
   });
 
   const cardSets = data?.cardSets || [];
@@ -30,7 +23,7 @@ export const Content = () => {
 
 
   if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
+  // // if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
@@ -45,7 +38,7 @@ export const Content = () => {
             </Grid>
           ))
         ) : (
-          <p>No card sets found</p>
+          <button onClick={() => window.location.assign('/createCardSet')}>Create Flashcards</button>
         )}
       </Grid>
     </>

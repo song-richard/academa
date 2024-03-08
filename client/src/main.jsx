@@ -4,8 +4,11 @@ import App from './App';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+//Import Pages
 import Home from './pages/Home';
 import StudyCardSet from './pages/StudyCardSet';
+import SignupPage from './pages/SignupPage';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
   {
@@ -14,9 +17,18 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       {
-        path: 'studyCardSet',
+        path: 'studyCardSet/:cardSetId',
         element: <StudyCardSet />,
-      }
+      },
+      {
+        path: 'signup',
+        element: <SignupPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+
     ],
   }
 ]);
