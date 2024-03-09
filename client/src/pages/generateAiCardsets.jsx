@@ -14,18 +14,18 @@ import { Navigate } from "react-router-dom";
 
 const GenerateAiCardsets = () => {
 
-  const [formState, setFormState] = useState({ title:'', amount: '', topic: '' });
+  const [formState, setFormState] = useState({ title: '', amount: '', topic: '' });
   const [addCardSet, { error }] = useMutation(ADD_CARDSET);
   const [cardSetState, setCardSetState] = useState([]);
 
-// title amount and topic into form submission funct
+  // title amount and topic into form submission funct
 
   //form submission for adding a new card set
   const handleAIFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await addCardSet({
-        variables: { title: formState.title, cardSet: [{term: "term ex", description: "desc ex"}] }
+        variables: { title: formState.title, cardSet: [{ term: "term ex", description: "desc ex" }] }
       });
       console.log(data);
     } catch (e) {
@@ -40,31 +40,30 @@ const GenerateAiCardsets = () => {
       [name]: value
     });
   };
-  
-if(Auth.loggedIn()){
-  return (
-    
-    <div>
-      <h1>Create a Card Set</h1>
-      <form onSubmit={handleAIFormSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input type="text" name="title" id="title" onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="topic">Topic:</label>
-          <input type="text" name="topic" id="topic" onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="amount">Amount:</label>
-          <input type="number" name="amount" id="amount" onChange={handleChange} />
-        </div>
-        <button type="submit">Create Card Set</button>
-      </form>
-    </div>
-  );
-} return(
-  <Navigate replace to="/login" />)
+
+  if (Auth.loggedIn()) {
+    return (
+      <div>
+        <h1>Create a Card Set</h1>
+        <form onSubmit={handleAIFormSubmit}>
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input type="text" name="title" id="title" onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="topic">Topic:</label>
+            <input type="text" name="topic" id="topic" onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="amount">Amount:</label>
+            <input type="number" name="amount" id="amount" onChange={handleChange} />
+          </div>
+          <button type="submit">Create Card Set</button>
+        </form>
+      </div>
+    );
+  } return (
+    <Navigate replace to="/login" />)
 };
 
 export default GenerateAiCardsets;

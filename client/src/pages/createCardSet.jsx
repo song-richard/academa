@@ -1,10 +1,10 @@
-import auth from '../utils/auth';
+import Auth from '../utils/auth';
 import { useState } from 'react';
 import { ADD_CARDSET } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 const CreateCardSet = () => {
-    const { _id } = (auth.getProfile()).data;
+    const { _id } = (Auth.getProfile()).data;
     const [cardSetState, setCardSetState] = useState([]);
     const [addCardSet, { error }] = useMutation(ADD_CARDSET);
     const [currentCardState, setCurrentCardState] = useState({ term: "", description: "" });
@@ -34,7 +34,7 @@ const CreateCardSet = () => {
         setCardSetState([...cardSetState, currentCardState]);
         setCurrentCardState({ term: "", description: "" });
     };
-
+    if (Auth.loggedIn()) {
     return (
         <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
             <h1 className="text-2xl font-semibold text-gray-800">Create a Card Set</h1>
@@ -65,5 +65,6 @@ const CreateCardSet = () => {
             </div>
         </div>
     );
+};
 };
 export default CreateCardSet;

@@ -1,6 +1,9 @@
 import { useMutation } from '@apollo/client';
 import { DELETE_CARDSET } from '../utils/mutations';
 
+// delete will be a button on the card set page
+// export the button to the card set page
+// we will not use this as a whole page
 const DeleteCardSet = ({ id }) => {
     const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
     const handleDelete = async () => {
