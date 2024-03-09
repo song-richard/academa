@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { GET_CARDSET } from '../utils/queries';
+import { GET_CARDSETS } from '../utils/queries';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { DELETE_CARDSET, UPDATE_CARDSET } from '../utils/mutations';
@@ -12,7 +12,7 @@ const StudyCardSet = () => {
 
     // get the card set id from the url
     const { cardSetId } = useParams();
-    const { loading, data } = useQuery(GET_CARDSET, {
+    const { loading, data } = useQuery(GET_CARDSETS, {
         variables: { id: cardSetId }
     });
 
@@ -46,10 +46,6 @@ const StudyCardSet = () => {
             } else {
                 console.log('Deletion cancelled by user');
             }
-            // delete the card set from the database
-            // let user confirm that they want to delete the card set
-            // if the user confirms, delete the card set
-            // if the user cancels, do nothing
             const { data } = await deleteCardSet({
                 variables: {
                     id: cardSetId
