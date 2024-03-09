@@ -38,8 +38,8 @@ const CreateCardSet = () => {
     if (Auth.loggedIn()) {
         return (
             <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-                <h1 className="text-2xl font-semibold text-gray-800">Create a Card Set</h1>
-                <form onSubmit={handleFormSubmit} className="mt-4">
+                <h1 className="text-2xl font-semibold text-gray-800 mb-4">Create a Card Set</h1>
+                <form onSubmit={handleFormSubmit} className="mb-4">
                     <div className="mb-4">
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
                         <input type="text" name="title" id="title" value={title} onChange={handleChange}
@@ -50,17 +50,17 @@ const CreateCardSet = () => {
                         Create Card Set
                     </button>
                 </form>
-                <div className="mt-8"> {/* Added margin-top here */}
+                <div className="mt-8">
                     <div id="createdCards">
                         {cardSetState.map((card, index) => (
-                            <div key={index}>{card.term} : {card.description}</div>
+                            <div key={index} className="bg-gray-100 p-3 rounded-md mb-2">{card.term} : {card.description}</div>
                         ))}
                     </div>
                     <div id="tbdCards">
                         <form id="addCardForm" onSubmit={handleAddCard}>
-                            <input type="text" id="term" name="term" placeholder="Add Card Term" value={currentCardState.term} onChange={handleCurrentCardChange} />
-                            <input type="text" id="description" name="description" placeholder="Add Card Description" value={currentCardState.description} onChange={handleCurrentCardChange} />
-                            <button type="submit" id="addCard" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add Card</button>
+                            <input type="text" id="term" name="term" placeholder="Add Card Term" value={currentCardState.term} onChange={handleCurrentCardChange} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 mb-2" />
+                            <input type="text" id="description" name="description" placeholder="Add Card Description" value={currentCardState.description} onChange={handleCurrentCardChange} className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 mb-2" />
+                            <button type="submit" id="addCard" className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add Card</button>
                         </form>
                     </div>
                 </div>

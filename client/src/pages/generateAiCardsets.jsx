@@ -43,25 +43,26 @@ const GenerateAiCardsets = () => {
 
   if (Auth.loggedIn()) {
     return (
-      <div>
-        <h1>Create a Card Set</h1>
-        <form onSubmit={handleAIFormSubmit}>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input type="text" name="title" id="title" onChange={handleChange} />
+      <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-semibold text-gray-800 mb-4">Create a Card Set</h1>
+        <form onSubmit={handleAIFormSubmit} className="mb-4">
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
+            <input type="text" name="title" id="title" onChange={handleChange} value={formState.title} className="mt-1 px-3 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
-          <div>
-            <label htmlFor="topic">Topic:</label>
-            <input type="text" name="topic" id="topic" onChange={handleChange} />
+          <div className="mb-4">
+            <label htmlFor="topic" className="block text-sm font-medium text-gray-700">Topic:</label>
+            <input type="text" name="topic" id="topic" onChange={handleChange} value={formState.topic} className="mt-1 px-3 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
-          <div>
-            <label htmlFor="amount">Amount:</label>
-            <input type="number" name="amount" id="amount" onChange={handleChange} />
+          <div className="mb-4">
+            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount:</label>
+            <input type="number" name="amount" id="amount" onChange={handleChange} value={formState.amount} className="mt-1 px-3 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
-          <button type="submit">Create Card Set</button>
+          <button type="submit" className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Create Card Set</button>
         </form>
       </div>
     );
+    
   } return (
     <Navigate replace to="/login" />)
 };
