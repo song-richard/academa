@@ -27,7 +27,14 @@ export const ChatBot = () => {
 
     setResponse(data.askLearningExpert);
   };
-  
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   if (auth.loggedIn()) {
     return (
