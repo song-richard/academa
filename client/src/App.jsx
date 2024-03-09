@@ -44,8 +44,8 @@ function App() {
         <Header />
         {/* <Content /> */}
         <Outlet />
-        <Footer />
         <ChatBot />
+        <Footer />        
       </>
 
       {/* COMMENTED OUT UNTIL AUTHO IS IN WORKING STATE - 03/05/2024 */}
