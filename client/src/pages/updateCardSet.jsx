@@ -32,6 +32,7 @@ const handleChange = (event) => {
 
 
 // create modal or page for updating a card set
+if (Auth.loggedIn()) {
 return (  
  <div>
 <h1>Update a Card Set</h1>
@@ -52,6 +53,7 @@ return (
 </form>
 </div>
 );
+};
 };
 
 export default UpdateCardSet;

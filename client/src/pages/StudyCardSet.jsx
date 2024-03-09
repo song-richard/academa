@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_CARD, GET_CARDSET } from '../utils/queries';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Auth from '../utils/auth';
 
 const StudyCardSet = () => {
     // get the card set id from the url
@@ -52,7 +53,7 @@ const StudyCardSet = () => {
         }
     };
 
-
+    if (Auth.loggedIn()) {
     return (
         <div>
             <h1>Study Cards ({cardSet.title})</h1>
@@ -68,6 +69,7 @@ const StudyCardSet = () => {
             </div>
         </div>
     );
-}
+};
+};
 
 export default StudyCardSet;

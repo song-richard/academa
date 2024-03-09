@@ -34,6 +34,7 @@ const CreateCardSet = () => {
         setCardSetState([...cardSetState, currentCardState]);
         setCurrentCardState({ term: "", description: "" });
     };
+    
     if (Auth.loggedIn()) {
     return (
         <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
