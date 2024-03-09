@@ -2,6 +2,7 @@ const { CardSet, Card, Profile } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { model, formatInstructions, parser } = require("../chatbot/config/openaiWrapper");
 const { PromptTemplate } = require("@langchain/core/prompts");
+const aiGenerateCards = require("../utils/aiGenerateCards");
 
 const promptFunc = async (input) => {
   try {     
@@ -69,6 +70,16 @@ const resolvers = {
         console.error(err);
         throw new Error("Failed to get a response from the chatbot");
       }     
+
+    },
+    getAICardSet: async (parent, { topic, amount }) => {
+      try {
+        const response = await aiGenerateCards(amount, topic);
+        return response;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Failed to get a response from the chatbot");
+      }
     },
     cardSet: async (parent, { cardSetId }) => {
       return CardSet.findbyId(cardSetId).populate("cards");

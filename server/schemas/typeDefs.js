@@ -6,7 +6,7 @@ type Query {
     cardSets: Profile
     card(id:Int!): Card
     askLearningExpert(question: String!): String
-    cardSet(cardSetId: ID!): CardSet
+    getAICardSet(topic: String!, amount: Int!): [Card]
 }
 
 type Mutation {
