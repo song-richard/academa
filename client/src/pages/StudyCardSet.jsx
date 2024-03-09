@@ -108,9 +108,9 @@ const StudyCardSet = () => {
 
             <div>
                 <div id={cardId}>{cardvalue}</div>
-                <button>Previous</button>
-                <button>Flip</button>
-                <button>Next</button>
+                <button onClick={handlePrevious}>Previous</button>
+                <button onClick={handleFlip}>Flip</button>
+                <button onClick={handleNext}>Next</button>
             </div>
         </div>
     );
