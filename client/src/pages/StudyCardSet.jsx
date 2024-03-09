@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_CARD, GET_CARDSET } from '../utils/queries';
+import { UPDATE_CARDSET } from '../utils/mutations';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Auth from '../utils/auth';
@@ -12,6 +13,7 @@ const StudyCardSet = () => {
     const { loading, data: getCardSet } = useQuery(GET_CARDSET, {
         variables: { cardSetId },
     });
+    const [updateCardSet] = useMutation(UPDATE_CARDSET);
 
     // get the cards from the card set
     const cardSet = getCardSet?.cardSet.cards || [];
@@ -37,11 +39,11 @@ const StudyCardSet = () => {
 
     //Buttons to handle the next, previous, and flip actions
     const handleNext = () => {
-        if (cardIndex < cardSet.length - 1) {
+        if (cardIndex < cardSet.length) {
             setCardIndex(cardIndex + 1);
             setCardValue(cardSet[cardIndex].term);
         }
-        console.log("end of set")
+
     };
     const handlePrevious = () => {
         if (cardIndex > 0) {
@@ -57,6 +59,16 @@ const StudyCardSet = () => {
             setCardValue(cardSet[cardIndex].description);
         }
     };
+
+    const handleSetCompletion = async () => {
+        const cleanedCardSet = cardSet.map((card) => {
+            return { term: card.term, description: card.description };
+        });
+        await updateCardSet({
+            variables: { id: cardSetId, isCompleted: true, cardSet: cleanedCardSet },
+        });
+        window.location.replace('/');
+    }
 
     if (Auth.loggedIn()) {
         return (
