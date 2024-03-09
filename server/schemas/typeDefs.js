@@ -6,6 +6,7 @@ type Query {
     cardSets: Profile
     card(id:Int!): Card
     askLearningExpert(question: String!): String
+    getAICardSet(topic: String!, amount: Int!): [Card]
 }
 
 type Mutation {
