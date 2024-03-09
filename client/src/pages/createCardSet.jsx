@@ -1,11 +1,12 @@
 import auth from '../utils/auth';
 import { useState } from 'react';
-import {ADD_CARD_SET} from '../utils/mutations';
+import {ADD_CARDSET} from '../utils/mutations';
 import { useMutation } from '@apollo/client';
+
 const CreateCardSet = () => {
     const { _id } = (auth.getProfile()).data;
     const [formState, setFormState] = useState({title: '', cardSet: '', name: ''});
-    const [addCardSet, {error}] = useMutation(ADD_CARD_SET);
+    const [addCardSet, {error}] = useMutation(ADD_CARDSET);
 
   //form submission for adding a new card set
   // we have to create routes for this
@@ -30,8 +31,8 @@ const CreateCardSet = () => {
     };
 
     return (
-        <div>
-            <h1>Create a Card Set</h1>
+        <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+            <h1 className="text-2xl font-semibold text-gray-800">Create a Card Set</h1>
             <form onSubmit={handleFormSubmit}>
                 <div>
                     <label htmlFor="title">Title:</label>

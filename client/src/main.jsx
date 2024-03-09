@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import StudyCardSet from './pages/StudyCardSet';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
+import CreateCardSet from './pages/CreateCardSet';
 
 const router = createBrowserRouter([
   {
@@ -28,10 +29,15 @@ const router = createBrowserRouter([
         path: 'login',
         element: <LoginPage />,
       },
+      {
+        path: 'createCardSet',
+        element: <CreateCardSet />,
+      },
 
     ],
   }
 ]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const domain = import.meta.env.AUTH0_DOMAIN;
 // const clientId = import.meta.env.AUTH0_CLIENT_ID;
