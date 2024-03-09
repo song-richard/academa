@@ -3,35 +3,21 @@ import React from 'react';
 //MUI Imports
 import { Typography, Card, CardContent } from '@mui/material';
 
-//Apollo Imports
-import { useQuery } from '@apollo/client';
-
-//Query Imports
-import { GET_CARDSETS } from '../../utils/queries';
-
-//Auth Imports
-import { useAuth0 } from '@auth0/auth0-react';
-
-export default function CardComponent({ title, id }) {
- const { user } = useAuth0();
-  const { loading, error, data } = useQuery(GET_CARDSETS, {
-    variables: { email: user.email },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
+export default function CardComponent({cardSet}) {
+  const {title, isCompleted, _id, cards} = cardSet;
+  
   return (
     <Card className="bg-white rounded-lg shadow-md p-4">
       <CardContent>
         <Typography variant="h6" className="text-xl font-bold mb-4">{title}</Typography>
         <ul>
-          {data.cardSets.map((cardSet) => (
-            <li key={cardSet._id} className="mb-2">
-              <Typography className="text-lg">{cardSet.title}</Typography>
-              <Typography className="text-sm">Is Completed: {cardSet.isCompleted ? 'Yes' : 'No'}</Typography>
+            <li key={_id} className="mb-2">
+              <Typography className="text-sm">Amount of Cards: {cards.length}</Typography>
+              <Typography className="text-sm">Is Completed: {isCompleted ? 'Yes' : 'No'}</Typography>
+              <button onClick={()=> window.location.assign(`/studyCardSet/${_id}`)}>Study Set</button>
+              <button >Update Set</button>
+              <button >Delete Set</button>
             </li>
-          ))}
         </ul>
       </CardContent>
     </Card>
