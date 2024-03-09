@@ -40,17 +40,14 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <>
+      <div className="min-h-screen flex flex-col">
         <Header />
-        {/* <Content /> */}
-        <Outlet />
+        <main className="flex-grow">
+          <Outlet />
+        </main>
         <Footer />
         <ChatBot />
-      </>
-
-      {/* COMMENTED OUT UNTIL AUTHO IS IN WORKING STATE - 03/05/2024 */}
-      {/* <Login />
-      <Logout /> */}
+      </div>
     </ApolloProvider>
   );
 };

@@ -22,14 +22,14 @@ export default function CardComponent({ title, id }) {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <Card>
+    <Card className="bg-white rounded-lg shadow-md p-4">
       <CardContent>
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="h6" className="text-xl font-bold mb-4">{title}</Typography>
         <ul>
-          {data.cardSets.map(cardSet => (
-            <li key={cardSet._id}>
-              <Typography>{cardSet.title}</Typography>
-              <Typography>Is Completed: {cardSet.isCompleted ? 'Yes' : 'No'}</Typography>
+          {data.cardSets.map((cardSet) => (
+            <li key={cardSet._id} className="mb-2">
+              <Typography className="text-lg">{cardSet.title}</Typography>
+              <Typography className="text-sm">Is Completed: {cardSet.isCompleted ? 'Yes' : 'No'}</Typography>
             </li>
           ))}
         </ul>
