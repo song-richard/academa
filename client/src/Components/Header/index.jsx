@@ -17,8 +17,8 @@ export const Header = () => {
           </Typography>
           {Auth.loggedIn() ? (
             <div>
-              <Button color="inherit" onClick={() => redirect('./pages/createCardSet')}>Create Cards</Button>
-              <Button color="inherit" onClick={() => redirect('./pages/generateAiCardsets')}>Create AI Cards</Button>
+              <Button color="inherit" onClick={() => redirect('./createCardSet')}>Create Cards</Button>
+              <Button color="inherit" onClick={() => redirect('./generateAiCards')}>Create AI Cards</Button>
               <Button color="inherit" onClick={Auth.logout}>Logout</Button>
             </div>
           ) : (
