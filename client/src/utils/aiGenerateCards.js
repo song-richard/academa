@@ -1,7 +1,5 @@
 import { OpenAI } from 'openai';
-import 'dotenv/config'
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({ apiKey: import.meta.env.REACT_APP_OPENAI_API_KEY });
 
 // This function takes in a topic and an amount of cards to create and returns an array of JSON objects with the term and description of the term
 async function aiGenerateCards(amount, topic) {
@@ -17,4 +15,4 @@ async function aiGenerateCards(amount, topic) {
     return res;
 }
 
-module.exports = aiGenerateCards;
+export default aiGenerateCards;

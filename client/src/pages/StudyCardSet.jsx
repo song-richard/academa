@@ -3,14 +3,16 @@ import { useQuery } from '@apollo/client';
 import { GET_CARD, GET_CARDSET } from '../utils/queries';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import 
+
 const StudyCardSet = () => {
     // get the card set id from the url
     const { cardSetId } = useParams();
+
     const { loading, data: getCardSets } = useQuery(GET_CARDSET, {
         variables: { cardSetId },
     });
-    }
+    
+    console.log(getCardSets);
     // get the cards from the card set
     const cardSet = data?.cardSets.cards || [];
 

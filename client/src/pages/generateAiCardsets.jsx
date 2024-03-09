@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_CARDSET } from '../utils/mutations';
 import Auth from '../utils/auth';
-import aiGenerateCard from '../utils/aiGenerateCard';
 
 
 // create 3 inputs on the form for title, topic, amount.... =)
