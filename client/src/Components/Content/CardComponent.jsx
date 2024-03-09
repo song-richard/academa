@@ -3,24 +3,9 @@ import React from 'react';
 //MUI Imports
 import { Typography, Card, CardContent } from '@mui/material';
 
-//Apollo Imports
-import { useQuery } from '@apollo/client';
-
-//Query Imports
-import { GET_CARDSETS } from '../../utils/queries';
-
-//Auth Imports
-import { useAuth0 } from '@auth0/auth0-react';
-
-export default function CardComponent({ title, id }) {
- const { user } = useAuth0();
-  const { loading, error, data } = useQuery(GET_CARDSETS, {
-    variables: { email: user.email },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
+export default function CardComponent({cardSet}) {
+  const {title, isCompleted, _id, cards} = cardSet;
+  
   return (
     <Card className="bg-white rounded-lg shadow-md p-4">
       <CardContent>
