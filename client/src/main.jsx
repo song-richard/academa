@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import StudyCardSet from './pages/StudyCardSet';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
-import CreateCardSet from './pages/CreateCardSet';
+import CreateCardSet from './pages/createCardSet';
 
 const router = createBrowserRouter([
   {
