@@ -94,7 +94,7 @@ const StudyCardSet = () => {
     return (
         <div>
             <h1>Study Cards (title of set will go here)</h1>
-            
+
             {/* create container component */}
             {/* get all the cards from the current set from the backend using a usequery */}
             {/* show only the first card in the set. just show the term */}
@@ -105,12 +105,15 @@ const StudyCardSet = () => {
             {/* if the user clicks next on the last card, show a message that says "you have reached the end of the set" */}
             {/* if the user clicks previous on the first card, show a message that says "you are at the beginning of the set" */}
             {/* when user reaches end of set update the database to show that the user has completed the set */}
-
             <div>
                 <div id={cardId}>{cardvalue}</div>
                 <button onClick={handlePrevious}>Previous</button>
                 <button onClick={handleFlip}>Flip</button>
                 <button onClick={handleNext}>Next</button>
+            </div>
+            <div>
+            <button onClick={handleUpdate}>Update Card Set</button>
+            <button onClick={handleDelete}>Delete Card Set</button>
             </div>
         </div>
     );
