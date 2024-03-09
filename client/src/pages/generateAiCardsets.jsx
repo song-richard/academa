@@ -21,13 +21,19 @@ const GenerateAiCardsets = () => {
   // title amount and topic into form submission funct
 
   //form submission for adding a new card set
+  const [getAiCardSet, { data, loading }] = useLazyQuery(GET_AI_CARDSET);
+
   const handleAIFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await addCardSet({
-        variables: { title: formState.title, cardSet: [{ term: "term ex", description: "desc ex" }] }
+      const { data } = await getAiCardSet({
+        variables: { topic: formState.topic, amount: Number(formState.amount) },
       });
-      console.log(data);
+
+      if (!loading && data) {
+        setCardSetState(data.getAICardSet);
+      }
+
     } catch (e) {
       console.error(e);
     }
