@@ -9,19 +9,18 @@ export const ChatBot = () => {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
 
-  const [askLearningExpert, { loading, error, data }] =
-    useLazyQuery(ASK_LEARNING_EXPERT);
-
-  // const { loading, error, data } = useQuery(ASK_LEARNING_EXPERT, {
-  //   variables: { question: input },
-  // });
+  const [askLearningExpert, { loading, error, data }] = useLazyQuery(ASK_LEARNING_EXPERT);
+  
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   const handleInput = async (event) => {
-    // const { data } = await askLearningExpert({ variables: { question: input } });
     event.preventDefault();
-    askLearningExpert({ variables: { question: input } });
+
+    const { data } = await askLearningExpert({
+      variables: { question: input },
+    });
+
     setResponse(data.askLearningExpert);
   };
   console.log(data);
@@ -33,7 +32,7 @@ export const ChatBot = () => {
         <Typography variant="h5" className="text-2xl font-bold mb-4">
           Ask Academa
         </Typography>
-        <input 
+        <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
