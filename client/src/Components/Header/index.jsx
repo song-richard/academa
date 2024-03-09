@@ -26,10 +26,12 @@ export const Header = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }} onClick={()=> redirect('/')}>
             Academa
           </Typography>
-          <Button color="inherit" onClick={()=> redirect('./pages/createCardSet')}>Create Cards</Button>
-          <Button color="inherit" onClick={()=> redirect('./pages/generateAiCardsets')}>Create AI Cards</Button>
           {Auth.loggedIn() ? (
-            <Button color="inherit" onClick={Auth.logout}>Logout</Button>
+            <div>
+              <Button color="inherit" onClick={()=> redirect('./pages/createCardSet')}>Create Cards</Button>
+              <Button color="inherit" onClick={()=> redirect('./pages/generateAiCardsets')}>Create AI Cards</Button>
+              <Button color="inherit" onClick={Auth.logout}>Logout</Button>
+            </div>
           ): (
             <div>
               <Button color="inherit" onClick={()=> redirect('/login')}>Login</Button>
