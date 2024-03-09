@@ -14,7 +14,6 @@ const CreateCardSet = () => {
             const { data } = await addCardSet({
                 variables: { title, userId: _id, cards: cardSetState }
             });
-            console.log(data);
         } catch (e) {
             console.error(e);
         }
