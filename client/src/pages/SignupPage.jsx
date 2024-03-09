@@ -8,7 +8,7 @@ const SignupPage = () => {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
     //Mutation for adding profile
-    const [addProfile, {data}] = useMutation(ADD_PROFILE);
+    const [addProfile, { data }] = useMutation(ADD_PROFILE);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -16,7 +16,7 @@ const SignupPage = () => {
             ...formState,
             [name]: value
         });
-    }
+    };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -28,15 +28,16 @@ const SignupPage = () => {
             const { token, profile } = data.addProfile;
             console.log(token, profile);
             Auth.login(token);
-            setFormState({ 
+            setFormState({
                 username: '',
-                email: '', 
-                password: '' 
+                email: '',
+                password: ''
             });
         } catch (e) {
             console.error(e);
         }
-    }
+    };
+
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">

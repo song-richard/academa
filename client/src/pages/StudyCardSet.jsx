@@ -4,17 +4,15 @@ import { GET_CARDSETS } from '../utils/queries';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-
-
 const StudyCardSet = () => {
     // get the card set id from the url
     const { cardSetId } = useParams();
-    const { loading, data } = useQuery(GET_CARDSETS, {
-        variables: { id: cardSetId }
-    });
+    const { loading, data } = useQuery(GET_CARDSETS)
     // get the cards from the card set
     const cardSet = data?.cardSets.cards || [];
+    console.log(cardSet);
     const [cardId, setCardId] = useState(0);
+    console.log(cardId);
     const [cardValue, setCardValue] = useState(cardSet[cardId].term);
     const [flipped, setFlipped] = useState(false);
 
@@ -25,31 +23,26 @@ const StudyCardSet = () => {
     }, [cardSet]);
 
     const handleNext = () => {
-        if (cardId < cards.length - 1) {
+        if (cardId < cardSet.length - 1) {
             setCardId(cardId++);
-            setCardValue(cards[cardId].term);
+            setCardValue(cardSet[cardId].term);
         }
-    }
+    };
     const handlePrevious = () => {
         if (cardId > 0) {
             setCardId(cardId - 1);
-            setCardValue(cards[cardId].term);
+            setCardValue(cardSet[cardId].term);
         }
-    }
+    };
     const handleFlip = () => {
         setFlipped(!flipped);
         if (flipped) {
-            setCardValue(cards[cardId].term);
+            setCardValue(cardSet[cardId].term);
         } else {
-            setCardValue(cards[cardId].description);
+            setCardValue(cardSet[cardId].description);
         }
-    }
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    if (error) {
-        return <div>Error! {error.message}</div>;
-    }
+    };
+
 
     return (
         <div>

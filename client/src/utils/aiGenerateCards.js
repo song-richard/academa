@@ -7,7 +7,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 async function aiGenerateCards(amount, topic) {
     const completion = await openai.chat.completions.create({
         messages: [
-            { role: "system", content: `You are a helpful assistant who takes a topic and turns it into flash cards with a JSON format like this cards: [{term: "term here", description: "description of term"},{term: "term here", description: "description of term"}]` },
+            { role: "system", content: `You are a helpful assistant who takes a topic and turns it into flash cards with a JSON format like these cards: [{term: "term here", description: "description of term"},{term: "term here", description: "description of term"}]` },
             {role: "user", content: `Create ${amount} cards about ${topic}`}
         ],
         model: "gpt-3.5-turbo",

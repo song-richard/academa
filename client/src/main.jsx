@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import CreateCardSet from './pages/CreateCardSet';
 import UpdateCardSet from './pages/updateCardSet';
 import DeleteCardSet from './pages/DeleteCardSet';
+import GenerateAiCards from './pages/GenerateAiCards';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         path: 'deleteCardSet',
         element: <DeleteCardSet />,
       },
+      {
+        path: 'generateAiCards',
+        element: <GenerateAiCards />,
+      }
 
     ],
   }

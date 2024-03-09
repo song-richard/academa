@@ -2,6 +2,7 @@ import auth from '../utils/auth';
 import { useState } from 'react';
 import { ADD_CARDSET } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
+
 const CreateCardSet = () => {
     const { _id } = (auth.getProfile()).data;
     const [cardSetState, setCardSetState] = useState([]);
@@ -34,6 +35,7 @@ const CreateCardSet = () => {
         setCardSetState([...cardSetState, currentCardState]);
         setCurrentCardState({ term: "", description: "" });
     };
+
     return (
         <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
             <h1 className="text-2xl font-semibold text-gray-800">Create a Card Set</h1>
