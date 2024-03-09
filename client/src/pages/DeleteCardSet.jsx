@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { DELETE_CARDSET } from '../utils/queries';
+import { DELETE_CARDSET } from '../utils/mutations';
 
 
 const DeleteCardSet = ({ id }) => {
