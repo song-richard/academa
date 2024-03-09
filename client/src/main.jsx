@@ -10,9 +10,10 @@ import StudyCardSet from './pages/StudyCardSet';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 
-import CreateCardSet from './pages/CreateCardSet';
+import CreateCardSet from './pages/createCardSet';
 import UpdateCardSet from './pages/updateCardSet';
 import DeleteCardSet from './pages/DeleteCardSet';
+import GenerateAiCards from './pages/generateAiCardsets';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: 'deleteCardSet',
         element: <DeleteCardSet />,
       },
+      {
+        path: 'generateAiCards',
+        element: <GenerateAiCards />,
+      }
 
     ],
   }
