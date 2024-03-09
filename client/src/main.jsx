@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+
 import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import ReactDOM from 'react-dom/client';
@@ -9,7 +9,9 @@ import Home from './pages/Home';
 import StudyCardSet from './pages/StudyCardSet';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
-import CreateCardSet from './pages/createCardSet';
+import CreateCardSet from './pages/CreateCardSet';
+import UpdateCardSet from './pages/updateCardSet';
+import DeleteCardSet from './pages/DeleteCardSet';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: 'createCardSet',
         element: <CreateCardSet />,
+      },
+      {
+        path: 'updateCardSet',
+        element: <UpdateCardSet />,
+      },
+      {
+        path: 'deleteCardSet',
+        element: <DeleteCardSet />,
       },
 
     ],
