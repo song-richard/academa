@@ -13,7 +13,7 @@ type Query {
 type Mutation {
     addProfile(username:String!, email:String!, password: String!): Auth
     addCardSet(title:String!, cardSet:[CardInput!]): Profile
-    updateCardSet(id:ID, cardSet:[CardInput!]): CardSet
+    updateCardSet(id:ID, cardSet:[CardInput!], isCompleted: Boolean): CardSet
     deleteCardSet(id:ID!): Profile
     login(user:String!, password:String!): Auth
 }

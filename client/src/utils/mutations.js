@@ -26,8 +26,8 @@ export const ADD_CARDSET = gql`
 `;
 
 export const UPDATE_CARDSET = gql`
-    mutation updateCardSet($id: String, $cardSet: CardInput) {
-        updateCardSet(id: $id, cardSet: $cardSet) {
+    mutation updateCardSet($id: ID, $cardSet: [CardInput!], $isCompleted: Boolean) {
+        updateCardSet(id: $id, cardSet: $cardSet, isCompleted: $isCompleted) {
             _id
             title
         }

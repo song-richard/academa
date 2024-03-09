@@ -129,7 +129,7 @@ const resolvers = {
 
       return addToProfile;
     },
-    updateCardSet: async (parent, { id, cardSet }) => {
+    updateCardSet: async (parent, { id, cardSet, isCompleted }) => {
       let newCards = [];
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
@@ -140,7 +140,10 @@ const resolvers = {
 
       const updatedCardSet = await CardSet.findOneAndUpdate(
         { _id: id },
-        { cards: newCards},
+        { $set: {
+          cards: newCards,
+          isCompleted: isCompleted
+        }},
         { new: true }
       ).populate('cards');
 
