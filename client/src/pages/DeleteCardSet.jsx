@@ -1,17 +1,20 @@
 import { useMutation } from '@apollo/client';
 import { DELETE_CARDSET } from '../utils/mutations';
 
-
 const DeleteCardSet = ({ id }) => {
     const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
-  
     const handleDelete = async () => {
+      
       try {
-        const { data } = await deleteCardSet({
-          variables: {
-            id: id
-          }
-        });
+        const confirmDelete = window.confirm('Deleting this card is permanent. Are you sure you want to delete it?');
+        if (confirmDelete) {
+            const { data } = await deleteCardSet({
+                variables: {
+                    id: id
+                }
+            });    
+
+        };
         console.log('Flashcard set deleted:', data.deleteCardSet);
       } catch (error) {
         console.error('Error deleting flashcard set:', error);
