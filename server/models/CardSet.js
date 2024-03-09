@@ -12,7 +12,7 @@ const cardSetSchema = new Schema(
       minLength: 3,
       maxLength: 500,
     },
-    completed: {
+    isCompleted: {
       type: Boolean,
     },
 
