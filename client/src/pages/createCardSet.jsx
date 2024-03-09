@@ -12,7 +12,7 @@ const CreateCardSet = () => {
         event.preventDefault();
         try {
             const { data } = await addCardSet({
-                variables: { title, userId: _id, cards: cardSetState }
+                variables: { title, cards: cardSetState }
             });
         } catch (e) {
             console.error(e);
