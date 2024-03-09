@@ -4,6 +4,7 @@ import { GET_CARDSET } from '../utils/queries';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { DELETE_CARDSET, UPDATE_CARDSET } from '../utils/mutations';
+import { useEffect } from 'react';
 
 
 
@@ -16,12 +17,19 @@ const StudyCardSet = () => {
     });
 
     // get the cards from the card set
-    const cards = data?.cardSet.cards || [];
+    const cardSet = data?.cardSet.cards || [];
+
     const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
     const [updateCardSet, { error: updateError }] = useMutation(UPDATE_CARDSET);
     const [cardId, setCardId] = useState(0);
-    const [cardvalue, setCardValue] = useState(cards[cardId].term);
+    const [cardValue, setCardValue] = useState(cardSet[cardId].term);
     const [flipped, setFlipped] = useState(false);
+
+    useEffect(() => {
+        if (cardSet && cardSet.cards.length > 0) {
+            setCardValue(cardSet.cards[0].term);
+        }
+    }, [cardSet]);
 
     const handleDelete = async () => {
         try {
@@ -72,7 +80,7 @@ const StudyCardSet = () => {
     }
     const handlePrevious = () => {
         if (cardId > 0) {
-            setCardId(cardId-1);
+            setCardId(cardId - 1);
             setCardValue(cards[cardId].term);
         }
     }
@@ -93,8 +101,12 @@ const StudyCardSet = () => {
 
     return (
         <div>
-            <h1>Study Cards (title of set will go here)</h1>
-
+            <h1>Study Cards ({cardSet.title})</h1>
+            <div>
+                {cardSet && cardSet.cards.length > 0 && (
+                    <div>{cardSet.cards[0].term}</div>
+                )}
+            </div>
             {/* create container component */}
             {/* get all the cards from the current set from the backend using a usequery */}
             {/* show only the first card in the set. just show the term */}
@@ -106,14 +118,14 @@ const StudyCardSet = () => {
             {/* if the user clicks previous on the first card, show a message that says "you are at the beginning of the set" */}
             {/* when user reaches end of set update the database to show that the user has completed the set */}
             <div>
-                <div id={cardId}>{cardvalue}</div>
+                <div id={cardId}>{cardValue}</div>
                 <button onClick={handlePrevious}>Previous</button>
                 <button onClick={handleFlip}>Flip</button>
                 <button onClick={handleNext}>Next</button>
             </div>
             <div>
-            <button onClick={handleUpdate}>Update Card Set</button>
-            <button onClick={handleDelete}>Delete Card Set</button>
+                <button onClick={handleUpdate}>Update Card Set</button>
+                <button onClick={handleDelete}>Delete Card Set</button>
             </div>
         </div>
     );
