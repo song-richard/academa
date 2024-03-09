@@ -12,10 +12,10 @@ const StudyCardSet = () => {
     const { loading, data: getCardSet } = useQuery(GET_CARDSET, {
         variables: { cardSetId },
     });
-    
+
     // get the cards from the card set
     const cardSet = getCardSet?.cardSet.cards || [];
-    
+
     //Set initial states
     const [cardIndex, setCardIndex] = useState(0);
     const [cardValue, setCardValue] = useState('');
@@ -27,6 +27,13 @@ const StudyCardSet = () => {
             setCardValue(cardSet[0].term);
         }
     }, [cardSet]);
+
+    //When index changes update card value display
+    useEffect(() => {
+        if (cardSet && cardSet[cardIndex]) {
+            setCardValue(cardSet[cardIndex].term);
+        }
+    }, [cardIndex, cardSet]);
 
     //Buttons to handle the next, previous, and flip actions
     const handleNext = () => {
@@ -52,22 +59,22 @@ const StudyCardSet = () => {
     };
 
     if (Auth.loggedIn()) {
-    return (
-        <div>
-            <h1>Study Cards ({cardSet.title})</h1>
+        return (
             <div>
-                {cardSet && cardSet.length > 0 && (
-                    <div>{cardValue}</div>
-                )}
+                <h1>Study Cards ({cardSet.title})</h1>
+                <div>
+                    {cardSet && cardSet.length > 0 && (
+                        <div>{cardValue}</div>
+                    )}
+                </div>
+                <div>
+                    <button onClick={handlePrevious}>Previous</button>
+                    <button onClick={handleFlip}>Flip</button>
+                    <button onClick={handleNext}>Next</button>
+                </div>
             </div>
-            <div>
-                <button onClick={handlePrevious}>Previous</button>
-                <button onClick={handleFlip}>Flip</button>
-                <button onClick={handleNext}>Next</button>
-            </div>
-        </div>
-    );
-};
+        );
+    };
 };
 
 export default StudyCardSet;
