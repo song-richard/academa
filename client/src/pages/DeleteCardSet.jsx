@@ -1,8 +1,6 @@
-import React from 'react';
 import { useMutation } from '@apollo/client';
 import { DELETE_CARDSET } from '../utils/queries';
 
-import React from 'react'
 
 const DeleteCardSet = ({ id }) => {
     const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
