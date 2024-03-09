@@ -23,10 +23,10 @@ export const ChatBot = () => {
 
     setResponse(data.askLearningExpert);
   };
-  console.log(data);
+  
 
   if (auth.loggedIn()) {
-    console.log("logged in");
+    
     return (
       <div className="p-6 bg-white rounded-lg shadow-md">
         <Typography variant="h5" className="text-2xl font-bold mb-4">
