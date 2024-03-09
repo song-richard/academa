@@ -32,6 +32,7 @@ const CreateCardSet = () => {
     const handleAddCard = (event) => {
         event.preventDefault();
         setCardSetState([...cardSetState, currentCardState]);
+        setCurrentCardState({ term: "", description: "" });
     };
     return (
         <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
