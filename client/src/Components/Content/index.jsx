@@ -23,18 +23,25 @@ export const Content = () => {
 
   return (
     <>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom className="text-2xl font-bold mb-4">
         Current Decks
       </Typography>
       <Grid container spacing={2}>
         {cardSets.length !== 0 ? (
-          cardSets.map(cardSet => (
-            <Grid item xs={4} key={cardSet._id}>
+          cardSets.map((cardSet) => (
+            <Grid item xs={12} md={4} key={cardSet._id}>
               <CardComponent title={cardSet.title} id={cardSet._id} />
             </Grid>
           ))
         ) : (
-          <button onClick={() => window.location.assign('/createCardSet')}>Create Flashcards</button>
+          <Grid item xs={12}>
+            <button
+              onClick={() => window.location.assign('/createCardSet')}
+              className="bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none"
+            >
+              Create Flashcards
+            </button>
+          </Grid>
         )}
       </Grid>
     </>

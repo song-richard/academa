@@ -42,6 +42,18 @@ export const ChatBot = () => {
           <div>{response}</div>
         </CardContent>
       </Card>
+      <div className="p-6 bg-white rounded-lg shadow-md">
+        <Typography variant="h5" className="text-2xl font-bold mb-4">
+          Ask Learning Expert
+        </Typography>
+        <div className="flex flex-col items-start">
+          <Card className="mb-4">
+            <CardContent>
+              <Typography variant="body1">{response}</Typography>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     );
   }
 };
