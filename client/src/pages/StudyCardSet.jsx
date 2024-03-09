@@ -61,7 +61,7 @@ const StudyCardSet = () => {
     if (Auth.loggedIn()) {
         return (
             <div>
-                <h1>Study Cards ({cardSet.title})</h1>
+                <h1>Study Cards ({getCardSet?.cardSet.title})</h1>
                 <div>
                     {cardSet && cardSet.length > 0 && (
                         <div>{cardValue}</div>
