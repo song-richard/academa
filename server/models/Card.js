@@ -9,8 +9,7 @@ const cardSchema = new Schema(
     },
     description: {
       type: String,
-      minLength: 15,
-      maxLength: 500,
+      required: true,
     },
     viewed: {
       type: Boolean,
