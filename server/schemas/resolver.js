@@ -35,7 +35,12 @@ const promptFunc = async (input) => {
 const resolvers = {
   Query: {
     profiles: async () => {
-      return Profile.find();
+      return Profile.find().populate({
+        path: 'cardSets',
+        populate: {
+          path: 'cards'
+        }
+      })
     },
 
     profile: async (parent, args, { user }) => {
@@ -82,7 +87,7 @@ const resolvers = {
       }
     },
     cardSet: async (parent, { cardSetId }) => {
-      return CardSet.findbyId(cardSetId).populate("cards");
+      return CardSet.findOne({_id: cardSetId}).populate("cards");
     }
   },
   
