@@ -9,6 +9,9 @@ export const ChatBot = () => {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState(""); 
 
+  //Open Modal Variable
+  const [open, setOpen] = useState(false);
+
   const [askLearningExpert, { loading, error, data }] = useLazyQuery(ASK_LEARNING_EXPERT);
   
   if (loading) return <p>Loading...</p>;
