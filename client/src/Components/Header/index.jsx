@@ -23,11 +23,11 @@ export const Header = () => {
     <>
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1 }} onClick={()=> redirect('/')}>
             Academa
           </Typography>
-          {/* <LoginButton /> */}
-
+          <Button color="inherit" onClick={()=> redirect('./pages/createCardSet')}>Create Cards</Button>
+          <Button color="inherit" onClick={()=> redirect('./pages/generateAiCardsets')}>Create AI Cards</Button>
           {Auth.loggedIn() ? (
             <Button color="inherit" onClick={Auth.logout}>Logout</Button>
           ): (
