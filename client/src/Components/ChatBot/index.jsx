@@ -8,11 +8,14 @@ import auth from "../../utils/auth";
 export const ChatBot = () => {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState("");
 
   const [askLearningExpert, { loading, error, data }] = useLazyQuery(ASK_LEARNING_EXPERT);
   
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
 
   const handleInput = async (event) => {
     event.preventDefault();
@@ -30,6 +33,7 @@ export const ChatBot = () => {
     return (
       <div className="p-6 bg-white rounded-lg shadow-md">
         <Typography variant="h5" className="text-2xl font-bold mb-4">
+          Ask Academa
           Ask Academa
         </Typography>
         <input
