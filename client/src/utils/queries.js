@@ -24,6 +24,7 @@ export const GET_CARDSETS = gql`
             cardSets {
                 _id
                 title
+                isCompleted
                 cards {
                     _id
                     term
