@@ -9,48 +9,49 @@ const StudyCardSet = () => {
     // get the card set id from the url
     const { cardSetId } = useParams();
 
-    const { loading, data: getCardSets } = useQuery(GET_CARDSET, {
+    const { loading, data: getCardSet } = useQuery(GET_CARDSET, {
         variables: { cardSetId },
     });
     
-    console.log(getCardSets);
     // get the cards from the card set
-    const cardSet = data?.cardSets.cards || [];
+    const cardSet = getCardSet?.cardSet.cards || [];
 
-    console.log(cardSet);
+    console.log({cardSet});
+    
+    const [cardIndex, setCardIndex] = useState(0);
+    
+    const [cardValue, setCardValue] = useState('');
 
-    const [cardId, setCardId] = useState(0);
-
-    console.log(cardId);
-
-    const [cardValue, setCardValue] = useState(cardSet[cardId].term);
+    // console.log(cardValue);
     const [flipped, setFlipped] = useState(false);
 
     useEffect(() => {
-        if (cardSet && cardSet.cards.length > 0) {
-            setCardValue(cardSet.cards[0].term);
+        if (cardSet && cardSet.length > 0) {
+            setCardValue(cardSet[0].term);
         }
     }, [cardSet]);
 
     const handleNext = () => {
-        if (cardId < cardSet.length - 1) {
-            setCardId(cardId++);
-            setCardValue(cardSet[cardId].term);
+        if (cardIndex < cardSet.length - 1) {
+            setCardIndex(cardIndex++);
+            setCardValue(cardSet[cardIndex].term);
         }
     };
     const handlePrevious = () => {
-        if (cardId > 0) {
-            setCardId(cardId - 1);
-            setCardValue(cardSet[cardId].term);
+        if (cardIndex > 0) {
+            setCardIndex(cardIndex - 1);
+            setCardValue(cardSet[cardIndex].term);
         }
     };
     const handleFlip = () => {
         setFlipped(!flipped);
+        console.log(flipped);
         if (flipped) {
-            setCardValue(cardSet[cardId].term);
+            setCardValue(cardSet[cardIndex].term);
         } else {
-            setCardValue(cardSet[cardId].description);
+            setCardValue(cardSet[cardIndex].description);
         }
+        console.log(cardValue);
     };
 
     if (Auth.loggedIn()) {
@@ -58,8 +59,8 @@ const StudyCardSet = () => {
         <div>
             <h1>Study Cards ({cardSet.title})</h1>
             <div>
-                {cardSet && cardSet.cards.length > 0 && (
-                    <div>{cardSet.cards[0].term}</div>
+                {cardSet && cardSet.length > 0 && (
+                    <div>{cardValue}</div>
                 )}
             </div>
             <div>
