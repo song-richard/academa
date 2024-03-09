@@ -11,12 +11,13 @@ export default function CardComponent({cardSet}) {
       <CardContent>
         <Typography variant="h6" className="text-xl font-bold mb-4">{title}</Typography>
         <ul>
-          {data.cardSets.map((cardSet) => (
-            <li key={cardSet._id} className="mb-2">
-              <Typography className="text-lg">{cardSet.title}</Typography>
-              <Typography className="text-sm">Is Completed: {cardSet.isCompleted ? 'Yes' : 'No'}</Typography>
+            <li key={_id} className="mb-2">
+              <Typography className="text-sm">Amount of Cards: {cards.length}</Typography>
+              <Typography className="text-sm">Is Completed: {isCompleted ? 'Yes' : 'No'}</Typography>
+              <button onClick={()=> window.location.assign(`/studyCardSet/${_id}`)}>Study Set</button>
+              <button >Update Set</button>
+              <button >Delete Set</button>
             </li>
-          ))}
         </ul>
       </CardContent>
     </Card>
