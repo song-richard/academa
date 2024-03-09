@@ -63,14 +63,25 @@ const StudyCardSet = () => {
             <div>
                 <h1>Study Cards ({getCardSet?.cardSet.title})</h1>
                 <div>
-                    {cardSet && cardSet.length > 0 && (
+                    {cardSet && cardSet.length > 0 && cardIndex < cardSet.length ? (
                         <div>{cardValue}</div>
+                    ) :(
+                        <div>Congratulations! You have studied all cards in the deck</div>
                     )}
                 </div>
                 <div>
                     <button onClick={handlePrevious}>Previous</button>
-                    <button onClick={handleFlip}>Flip</button>
-                    <button onClick={handleNext}>Next</button>
+                    {cardIndex >= cardSet.length ? (
+                        <>
+                        <button onClick={()=>setCardIndex(0)}>Study Again</button>
+                        <button onClick={handleSetCompletion}>Return to Dashboard</button>
+                        </>
+                    ) : (
+                        <>
+                            <button onClick={handleFlip}>Flip</button>
+                            <button onClick={handleNext}>Next</button>
+                        </>
+                    )}
                 </div>
             </div>
         );
