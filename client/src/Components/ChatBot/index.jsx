@@ -7,9 +7,7 @@ import auth from "../../utils/auth";
 
 export const ChatBot = () => {
   const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
-  const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState(""); 
 
   const [askLearningExpert, { loading, error, data }] = useLazyQuery(ASK_LEARNING_EXPERT);
   
