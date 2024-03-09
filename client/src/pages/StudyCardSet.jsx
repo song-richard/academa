@@ -16,21 +16,25 @@ const StudyCardSet = () => {
     // get the cards from the card set
     const cardSet = getCardSet?.cardSet.cards || [];
     
+    //Set initial states
     const [cardIndex, setCardIndex] = useState(0);
     const [cardValue, setCardValue] = useState('');
     const [flipped, setFlipped] = useState(false);
 
+    //When cardset changes, set the card value to the first card in the set
     useEffect(() => {
         if (cardSet && cardSet.length > 0) {
             setCardValue(cardSet[0].term);
         }
     }, [cardSet]);
 
+    //Buttons to handle the next, previous, and flip actions
     const handleNext = () => {
         if (cardIndex < cardSet.length - 1) {
-            setCardIndex(cardIndex++);
+            setCardIndex(cardIndex + 1);
             setCardValue(cardSet[cardIndex].term);
         }
+        console.log("end of set")
     };
     const handlePrevious = () => {
         if (cardIndex > 0) {
