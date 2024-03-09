@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_CARDSET } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Navigate } from "react-router-dom";
 
 
 // create 3 inputs on the form for title, topic, amount.... =)
@@ -13,7 +14,6 @@ import Auth from '../utils/auth';
 
 const GenerateAiCardsets = () => {
 
-  const { _id } = (Auth.getProfile()).data;
   const [formState, setFormState] = useState({ title:'', amount: '', topic: '' });
   const [addCardSet, { error }] = useMutation(ADD_CARDSET);
   const [cardSetState, setCardSetState] = useState([]);
@@ -25,7 +25,7 @@ const GenerateAiCardsets = () => {
     event.preventDefault();
     try {
       const { data } = await addCardSet({
-        variables: { title: formState.title }
+        variables: { title: formState.title, cardSet: [{term: "term ex", description: "desc ex"}] }
       });
       console.log(data);
     } catch (e) {
@@ -40,8 +40,10 @@ const GenerateAiCardsets = () => {
       [name]: value
     });
   };
-
+  
+if(Auth.loggedIn()){
   return (
+    
     <div>
       <h1>Create a Card Set</h1>
       <form onSubmit={handleAIFormSubmit}>
@@ -61,6 +63,8 @@ const GenerateAiCardsets = () => {
       </form>
     </div>
   );
+} return(
+  <Navigate replace to="/login" />)
 };
 
 export default GenerateAiCardsets;
