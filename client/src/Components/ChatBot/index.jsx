@@ -6,46 +6,40 @@ import { Typography, Card, CardContent } from "@mui/material";
 import auth from "../../utils/auth";
 
 export const ChatBot = () => {
-  const [input, setInput] = useState('');
-  const [response, setResponse] = useState('');
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState("");
 
-  const [askLearningExpert, { loading, error, data }] = useLazyQuery(ASK_LEARNING_EXPERT);
+  const [askLearningExpert, { loading, error, data }] =
+    useLazyQuery(ASK_LEARNING_EXPERT);
 
-  
   // const { loading, error, data } = useQuery(ASK_LEARNING_EXPERT, {
   //   variables: { question: input },
   // });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  
-  
+
   const handleInput = async (event) => {
     // const { data } = await askLearningExpert({ variables: { question: input } });
-   event.preventDefault();
+    event.preventDefault();
     askLearningExpert({ variables: { question: input } });
     setResponse(data.askLearningExpert);
-  }
+  };
   console.log(data);
 
   if (auth.loggedIn()) {
     console.log("logged in");
     return (
-      <Card>
-        <CardContent>
-          <Typography variant="h6">Ask Academa</Typography>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button onClick={handleInput}>Send</button>
-          <div>{response}</div>
-        </CardContent>
-      </Card>
       <div className="p-6 bg-white rounded-lg shadow-md">
         <Typography variant="h5" className="text-2xl font-bold mb-4">
-          Ask Learning Expert
+          Ask Academa
         </Typography>
+        <input 
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="mt-1 px-3 py-2  border rounded-md focus:outline-none focus:border-blue-500"
+        />
+        <button onClick={handleInput}>Submit</button>
         <div className="flex flex-col items-start">
           <Card className="mb-4">
             <CardContent>
