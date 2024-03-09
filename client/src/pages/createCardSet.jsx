@@ -7,6 +7,7 @@ const CreateCardSet = () => {
     const { _id } = (auth.getProfile()).data;
     const [cardSetState, setcardSetState] = useState([]);
     const [addCardSet, { error }] = useMutation(ADD_CARDSET);
+    const [currentCardState, setCurrentCardState] = useState({term: "", description: ""});
     let title = "";
 
     //form submission for adding a new card set
@@ -31,6 +32,15 @@ const CreateCardSet = () => {
         });
     };
 
+    const handleCurrentCardChange = (event) => {
+        const { name, value } = event.target;
+        setCurrentCardState({
+            ...currentCardState,
+            [name]: value
+        });
+        console.log(currentCardState);
+    }
+
 
     
 
@@ -54,9 +64,9 @@ const CreateCardSet = () => {
 
                 </div>
                 <div id="tbdCards">
-                    <form>
-                        <input type="text" id="term" name="term" placeholder="Add Card Term" />
-                        <input type="text" id="description" name="description" placeholder="Add Card Description" />
+                    <form id = "">
+                        <input type="text" id="term" name="term" placeholder="Add Card Term" value={currentCardState.term} onChange={handleCurrentCardChange}/>
+                        <input type="text" id="description" name="description" placeholder="Add Card Description" value={currentCardState.description} onChange={handleCurrentCardChange}/>
                         <button type="submit" id="addCard">Add Card</button>
                     </form>
                 </div>
