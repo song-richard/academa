@@ -31,8 +31,7 @@ export const ChatBot = () => {
     return (
       <div className="p-6 bg-white rounded-lg shadow-md">
         <Typography variant="h5" className="text-2xl font-bold mb-4">
-          Ask Academa
-          Ask Academa
+          Ask Academa          
         </Typography>
         <input
           type="text"
