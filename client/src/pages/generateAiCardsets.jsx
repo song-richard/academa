@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { ADD_CARDSET } from '../utils/mutations';
+import { GET_AI_CARDSET } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from "react-router-dom";
 
@@ -47,6 +48,20 @@ const GenerateAiCardsets = () => {
     });
   };
 
+  const handleAddCardSet = async (event) => {
+    event.preventDefault();
+    try {
+      const cleanedCardSet = cardSetState.map((card) => {
+        return { term: card.term, description: card.description };
+      });
+      const { data } = await addCardSet({
+        variables: { title: formState.title, cardSet: cleanedCardSet },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   if (Auth.loggedIn()) {
     return (
       <div>
@@ -64,9 +79,26 @@ const GenerateAiCardsets = () => {
             <label htmlFor="amount">Amount:</label>
             <input type="number" name="amount" id="amount" onChange={handleChange} />
           </div>
-          <button type="submit">Create Card Set</button>
+          <button type="submit">Generate Ai Cards</button>
         </form>
+        <div>
+          <h2>Generated Cards</h2>
+          {loading ? <div>Loading...</div> : (
+
+            <ul>
+              {cardSetState.map((card, index) => (
+                <li key={index}>
+                  <div>
+                    <p>{card.term}: {card.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <button onClick={handleAddCardSet}>Create Deck</button>
       </div>
+
     );
   } return (
     <Navigate replace to="/login" />)
