@@ -11,24 +11,26 @@ export const Header = () => {
   return (
     <>
       <AppBar position='static'>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }} onClick={() => redirect('/')}>
+        <Toolbar className="flex justify-between items-center">
+          <Typography variant="h6" onClick={() => redirect('/')} className="cursor-pointer">
             Academa
           </Typography>
-          {Auth.loggedIn() ? (
-            <div>
-              <Button color="inherit" onClick={() => redirect('./createCardSet')}>Create Cards</Button>
-              <Button color="inherit" onClick={() => redirect('./generateAiCards')}>Create AI Cards</Button>
-              <Button color="inherit" onClick={Auth.logout}>Logout</Button>
-            </div>
-          ) : (
-            <div>
-              <Button color="inherit" onClick={() => redirect('/login')}>Login</Button>
-              <Button color="inherit" onClick={() => redirect('/signup')}>Signup</Button>
-            </div>
-          )}
+          <div className="flex space-x-4">
+            {Auth.loggedIn() ? (
+              <>
+                <Button color="inherit" onClick={() => redirect('./createCardSet')} className="hidden md:inline-block">Create Cards</Button>
+                <Button color="inherit" onClick={() => redirect('./generateAiCards')} className="hidden md:inline-block">Create AI Cards</Button>
+                <Button color="inherit" onClick={Auth.logout}>Logout</Button>
+              </>
+            ) : (
+              <>
+                <Button color="inherit" onClick={() => redirect('/login')}>Login</Button>
+                <Button color="inherit" onClick={() => redirect('/signup')}>Signup</Button>
+              </>
+            )}
+          </div>
         </Toolbar>
-      </AppBar >
+      </AppBar>
     </>
-  )
+  );
 }
