@@ -69,9 +69,12 @@ const resolvers = {
         console.error(err);
         throw new Error("Failed to get a response from the chatbot");
       }     
-
     },
+    cardSet: async (parent, { cardSetId }) => {
+      return CardSet.findbyId(cardSetId).populate("cards");
+    }
   },
+  
   Mutation: {
     addProfile: async (parent, { username, email, password }) => {
       const profile = await Profile.create({ username, email, password});

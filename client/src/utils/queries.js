@@ -35,6 +35,21 @@ export const GET_CARDSETS = gql`
     }
 `;
 
+export const GET_CARDSET = gql`
+    query cardSet($cardSetId: ID!) {
+        cardSet(cardSetId: $cardSetId) {
+            _id
+            title
+            isCompleted
+            cards {
+                _id
+                term
+                description
+            }
+        }
+    }
+`;
+
 export const GET_CARD = gql`
     query card($id: Int!) {
         card(id: $id) {

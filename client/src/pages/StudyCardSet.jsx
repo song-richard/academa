@@ -1,18 +1,25 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { GET_CARDSETS } from '../utils/queries';
+import { GET_CARD, GET_CARDSET } from '../utils/queries';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import 
 const StudyCardSet = () => {
     // get the card set id from the url
     const { cardSetId } = useParams();
-    const { loading, data } = useQuery(GET_CARDSETS)
+    const { loading, data: getCardSets } = useQuery(GET_CARDSET, {
+        variables: { cardSetId },
+    });
+    }
     // get the cards from the card set
     const cardSet = data?.cardSets.cards || [];
+
     console.log(cardSet);
+
     const [cardId, setCardId] = useState(0);
+
     console.log(cardId);
+
     const [cardValue, setCardValue] = useState(cardSet[cardId].term);
     const [flipped, setFlipped] = useState(false);
 
