@@ -18,11 +18,26 @@ const StudyCardSet = () => {
     // get the cards from the card set
     const cards = data?.cardSet.cards || [];
     const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
+    const [updateCardSet, { error: updateError }] = useMutation(UPDATE_CARDSET);
     const [cardId, setCardId] = useState(0);
     const [cardvalue, setCardValue] = useState(cards[cardId].term);
+    const [flipped, setFlipped] = useState(false);
 
     const handleDelete = async () => {
         try {
+            // window.confirm is not best to use
+            // replace with a modal
+            const confirmDelete = window.confirm('Deleting this card is permanent. Are you sure you want to delete it?');
+            if (confirmDelete) {
+                const { data } = await deleteCardSet({
+                    variables: {
+                        id: cardSetId
+                    }
+                });
+                console.log('Flashcard set deleted:', data.deleteCardSet);
+            } else {
+                console.log('Deletion cancelled by user');
+            }
             // delete the card set from the database
             // let user confirm that they want to delete the card set
             // if the user confirms, delete the card set
@@ -49,7 +64,32 @@ const StudyCardSet = () => {
             console.error('Error updating flashcard set:', error);
         }
     }
-
+    const handleNext = () => {
+        if (cardId < cards.length - 1) {
+            setCardId(cardId++);
+            setCardValue(cards[cardId].term);
+        }
+    }
+    const handlePrevious = () => {
+        if (cardId > 0) {
+            setCardId(cardId-1);
+            setCardValue(cards[cardId].term);
+        }
+    }
+    const handleFlip = () => {
+        setFlipped(!flipped);
+        if (flipped) {
+            setCardValue(cards[cardId].term);
+        } else {
+            setCardValue(cards[cardId].description);
+        }
+    }
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    if (error) {
+        return <div>Error! {error.message}</div>;
+    }
 
     return (
         <div>
