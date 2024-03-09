@@ -15,14 +15,9 @@ const StudyCardSet = () => {
     
     // get the cards from the card set
     const cardSet = getCardSet?.cardSet.cards || [];
-
-    console.log({cardSet});
     
     const [cardIndex, setCardIndex] = useState(0);
-    
     const [cardValue, setCardValue] = useState('');
-
-    // console.log(cardValue);
     const [flipped, setFlipped] = useState(false);
 
     useEffect(() => {
@@ -45,13 +40,11 @@ const StudyCardSet = () => {
     };
     const handleFlip = () => {
         setFlipped(!flipped);
-        console.log(flipped);
         if (flipped) {
             setCardValue(cardSet[cardIndex].term);
         } else {
             setCardValue(cardSet[cardIndex].description);
         }
-        console.log(cardValue);
     };
 
     if (Auth.loggedIn()) {
