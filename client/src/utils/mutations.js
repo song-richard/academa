@@ -35,7 +35,7 @@ export const UPDATE_CARDSET = gql`
 `;
 
 export const DELETE_CARDSET = gql`
-    mutation deleteCardSet($id: String) {
+    mutation deleteCardSet($id: ID!) {
         deleteCardSet(id: $id) {
             _id
             cardSets {

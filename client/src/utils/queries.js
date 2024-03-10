@@ -69,7 +69,6 @@ export const ASK_LEARNING_EXPERT = gql`
 export const GET_AI_CARDSET = gql`
     query getAICardSet($topic: String!, $amount: Int!) {
         getAICardSet(topic: $topic, amount: $amount) {
-            _id
             term
             description
         }

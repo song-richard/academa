@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { ADD_CARDSET } from '../utils/mutations';
+import { GET_AI_CARDSET } from '../utils/queries';
 import Auth from '../utils/auth';
 import { Navigate } from "react-router-dom";
 
@@ -21,13 +22,19 @@ const GenerateAiCardsets = () => {
   // title amount and topic into form submission funct
 
   //form submission for adding a new card set
+  const [getAiCardSet, { data, loading }] = useLazyQuery(GET_AI_CARDSET);
+
   const handleAIFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await addCardSet({
-        variables: { title: formState.title, cardSet: [{ term: "term ex", description: "desc ex" }] }
+      const { data } = await getAiCardSet({
+        variables: { topic: formState.topic, amount: Number(formState.amount) },
       });
-      console.log(data);
+
+      if (!loading && data) {
+        setCardSetState(data.getAICardSet);
+      }
+
     } catch (e) {
       console.error(e);
     }
@@ -40,6 +47,20 @@ const GenerateAiCardsets = () => {
       [name]: value
     });
   };
+
+  const handleAddCardSet = async (event) => {
+    event.preventDefault();
+    try {
+      const cleanedCardSet = cardSetState.map((card) => {
+        return { term: card.term, description: card.description };
+      });
+      const { data } = await addCardSet({
+        variables: { title: formState.title, cardSet: cleanedCardSet },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   if (Auth.loggedIn()) {
     return (
@@ -58,9 +79,26 @@ const GenerateAiCardsets = () => {
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount:</label>
             <input type="number" name="amount" id="amount" onChange={handleChange} value={formState.amount} className="mt-1 px-3 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
-          <button type="submit" className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Create Card Set</button>
+          <button type="submit">Generate Ai Cards</button>
         </form>
+        <div>
+          <h2>Generated Cards</h2>
+          {loading ? <div>Loading...</div> : (
+
+            <ul>
+              {cardSetState.map((card, index) => (
+                <li key={index}>
+                  <div>
+                    <p>{card.term}: {card.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <button onClick={handleAddCardSet}>Create Deck</button>
       </div>
+
     );
     
   } return (
