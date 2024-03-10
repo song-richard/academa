@@ -35,7 +35,12 @@ const promptFunc = async (input) => {
 const resolvers = {
   Query: {
     profiles: async () => {
-      return Profile.find();
+      return Profile.find().populate({
+        path: 'cardSets',
+        populate: {
+          path: 'cards'
+        }
+      })
     },
 
     profile: async (parent, args, { user }) => {
@@ -82,7 +87,7 @@ const resolvers = {
       }
     },
     cardSet: async (parent, { cardSetId }) => {
-      return CardSet.findbyId(cardSetId).populate("cards");
+      return CardSet.findOne({_id: cardSetId}).populate("cards");
     }
   },
   
@@ -124,7 +129,7 @@ const resolvers = {
 
       return addToProfile;
     },
-    updateCardSet: async (parent, { id, cardSet }) => {
+    updateCardSet: async (parent, { id, cardSet, isCompleted }) => {
       let newCards = [];
       for (let i = 0; i < cardSet.length; i++) {
         const { term, description } = cardSet[i];
@@ -135,7 +140,10 @@ const resolvers = {
 
       const updatedCardSet = await CardSet.findOneAndUpdate(
         { _id: id },
-        { cards: newCards},
+        { $set: {
+          cards: newCards,
+          isCompleted: isCompleted
+        }},
         { new: true }
       ).populate('cards');
 

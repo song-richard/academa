@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
-    "concurrently": "^8.2.2"
+    "@mui/icons-material": "^5.15.12",
+    "concurrently": "^8.2.2",
+    "mongodb": "^6.4.0"
   },
   "name": "academa",
   "version": "1.0.0",
