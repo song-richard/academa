@@ -82,7 +82,7 @@ const resolvers = {
       }
     },
     cardSet: async (parent, { cardSetId }) => {
-      return CardSet.findbyId(cardSetId).populate("cards");
+      return CardSet.findOne({ _id: cardSetId }).populate("cards");
     }
   },
   
