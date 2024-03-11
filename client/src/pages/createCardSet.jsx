@@ -15,6 +15,7 @@ const CreateCardSet = () => {
             const { data } = await addCardSet({
                 variables: { title, cardSet: cardSetState }
             });
+            window.location.assign('/')
         } catch (e) {
             console.error(e);
         }
