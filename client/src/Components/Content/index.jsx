@@ -14,12 +14,18 @@ import Auth from '../../utils/auth';
 export const Content = () => {
   const profile = (Auth.getProfile()).data;
 
-  const { loading, data } = useQuery(GET_CARDSETS);
-  const cardSets = data?.cardSets || []; // Ensure cardSets is initialized as an empty array
+  const { loading, data, error } = useQuery(GET_CARDSETS);
+  const cardSets = data?.cardSets || [];
 
 
   if (loading) return <p>Loading...</p>;
-  // // if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {error.message}</p>; 
+
+  //Ensure the cardSets is an Array
+  if (!Array.isArray(cardSets)) {
+    console.error('Data received is not in the expected format:', cardSets);
+    return <p>Unexpected data format</p>; // Display error message if data format is unexpected
+  }
 
   return (
     <div className="flex justify-center" style={{ marginTop: '70px' }}>
