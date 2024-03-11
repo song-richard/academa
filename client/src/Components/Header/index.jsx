@@ -12,7 +12,7 @@ export const Header = () => {
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
-  
+
   return (
     <>
       <AppBar position='static'>
@@ -23,9 +23,17 @@ export const Header = () => {
           <div className="flex space-x-4">
             {Auth.loggedIn() ? (
               <>
-                <Button color="inherit" onClick={() => redirect('./createCardSet')} className="hidden md:inline-block">Create Cards</Button>
-                <Button color="inherit" onClick={() => redirect('./generateAiCards')} className="hidden md:inline-block">Create AI Cards</Button>
-                <Button color="inherit" onClick={Auth.logout}>Logout</Button>
+            <>
+              <ListItem button onClick={() => redirect('./createCardSet')}>
+                <ListItemText primary="Create Cards" />
+              </ListItem>
+              <ListItem button onClick={() => redirect('./generateAiCards')}>
+                <ListItemText primary="Create AI Cards" />
+              </ListItem>
+              <ListItem button onClick={Auth.logout}>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            </>
               </>
             ) : (
               <>
