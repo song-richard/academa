@@ -37,8 +37,12 @@ export const Header = () => {
               </>
             ) : (
               <>
-                <Button color="inherit" onClick={() => redirect('/login')}>Login</Button>
-                <Button color="inherit" onClick={() => redirect('/signup')}>Signup</Button>
+                <ListItem button onClick={() => redirect('/login')}>
+                  <ListItemText primary="Login" />
+                </ListItem>
+                <ListItem button onClick={() => redirect('/signup')}>
+                  <ListItemText primary="Signup" />
+                </ListItem>
               </>
             )}
           </div>
