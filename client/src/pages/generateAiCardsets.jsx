@@ -57,7 +57,6 @@ const GenerateAiCardsets = () => {
       const { data } = await addCardSet({
         variables: { title: formState.title, cardSet: cleanedCardSet },
       });
-      window.location.assign('/')
     } catch (e) {
       console.error(e);
     }
@@ -78,7 +77,7 @@ const GenerateAiCardsets = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount:</label>
-            <input type="number" name="amount" id="amount" min="1" onChange={handleChange} value={formState.amount} className="mt-1 px-3 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500" />
+            <input type="number" name="amount" id="amount" onChange={handleChange} value={formState.amount} className="mt-1 px-3 py-2 w-full border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
           <button type="submit">Generate Ai Cards</button>
         </form>

@@ -7,7 +7,6 @@ import { Typography, Grid } from '@mui/material';
 //Query Imports
 import { GET_CARDSETS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
-import {useEffect} from 'react';
 
 //Auth Imports
 import Auth from '../../utils/auth';
