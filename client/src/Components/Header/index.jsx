@@ -7,7 +7,12 @@ const redirect = (route) => {
 }
 
 export const Header = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+  
   return (
     <>
       <AppBar position='static'>
