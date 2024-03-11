@@ -16,7 +16,8 @@ const DeleteCardSet = ({ id }) => {
                 variables: {
                     id: id
                 }
-            });    
+              });    
+              window.location.reload();
 
         };
         console.log('Flashcard set deleted:', data.deleteCardSet);

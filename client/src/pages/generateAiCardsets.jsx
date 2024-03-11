@@ -57,6 +57,7 @@ const GenerateAiCardsets = () => {
       const { data } = await addCardSet({
         variables: { title: formState.title, cardSet: cleanedCardSet },
       });
+      window.location.assign('/');
     } catch (e) {
       console.error(e);
     }

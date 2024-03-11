@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.5",
+    "@apollo/client": "^3.9.6",
     "@auth0/auth0-react": "^2.2.4",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",

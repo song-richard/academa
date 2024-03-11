@@ -15,7 +15,7 @@ export const Content = () => {
   const profile = (Auth.getProfile()).data;
 
   const { loading, data, error } = useQuery(GET_CARDSETS);
-  const cardSets = data?.cardSets || [];
+  const {cardSets} = data?.cardSets || [];
 
 
   if (loading) return <p>Loading...</p>;
