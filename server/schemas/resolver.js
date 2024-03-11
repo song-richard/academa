@@ -87,7 +87,7 @@ const resolvers = {
       }
     },
     cardSet: async (parent, { cardSetId }) => {
-      return CardSet.findOne({ _id: cardSetId }).populate("cards");
+      return CardSet.findOne({_id: cardSetId}).populate("cards");
     }
   },
   
