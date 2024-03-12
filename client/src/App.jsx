@@ -45,7 +45,6 @@ function App() {
         <main className="flex-grow">
           <Outlet />
         </main>
-        <ChatBot />
         <Footer />
       </div>
     </ApolloProvider>

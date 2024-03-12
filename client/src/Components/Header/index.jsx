@@ -1,7 +1,7 @@
-//MUI IMPORTS
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import Auth from '../../utils/auth';
+import { ChatBot } from '../ChatBot'; // Import the ChatBot component
 
 const redirect = (route) => {
   window.location.assign(route);
@@ -24,9 +24,13 @@ export const Header = () => {
           <div className="hidden md:flex space-x-4">
             {Auth.loggedIn() ? (
               <>
+                <Button color="inherit" onClick={() => redirect('/')}>Home</Button>
                 <Button color="inherit" onClick={() => redirect('./createCardSet')}>Create Cards</Button>
                 <Button color="inherit" onClick={() => redirect('./generateAiCards')}>Create AI Cards</Button>
                 <Button color="inherit" onClick={Auth.logout}>Logout</Button>
+                <Button color="inherit">
+                  <ChatBot /> 
+                </Button>
               </>
             ) : (
               <>
