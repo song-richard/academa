@@ -72,11 +72,11 @@ const StudyCardSet = () => {
 
     if (Auth.loggedIn()) {
         return (
-            <div>
-                <h1>Study Cards ({getCardSet?.cardSet.title})</h1>
+            <div className="text-center font-bold">
+            <h1>Study Cards ({getCardSet?.cardSet.title})</h1>
                 {loading ? (<div>Loading...</div>) : (
                     <>
-                        <div>
+                        <div style={{ height: '100px' }} >
                             {cardSet && cardSet.length > 0 && cardIndex < cardSet.length ? (
                                 <div>{cardValue}</div>
                             ) : (
@@ -84,17 +84,17 @@ const StudyCardSet = () => {
                             )}
                         </div>
 
-                        <div>
-                            <button onClick={handlePrevious}>Previous</button>
+                        <div className="flex justify-center space-x-4 mt-4">
+                        <button onClick={handlePrevious} className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none">Previous</button>
                             {cardIndex >= cardSet.length ? (
                                 <>
-                                    <button onClick={() => setCardIndex(0)}>Study Again</button>
-                                    <button onClick={handleSetCompletion}>Return to Dashboard</button>
+                                    <button onClick={() => setCardIndex(0)} className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none">Study Again</button>
+                                    <button onClick={handleSetCompletion} className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none">Return to Dashboard</button>
                                 </>
                             ) : (
                                 <>
-                                    <button onClick={handleFlip}>Flip</button>
-                                    <button onClick={handleNext}>Next</button>
+                                    <button onClick={handleFlip} className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none">Flip</button>
+                                    <button onClick={handleNext} className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none">Next</button>
                                 </>
                             )}
                         </div>
