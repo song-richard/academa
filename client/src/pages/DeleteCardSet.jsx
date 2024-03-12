@@ -24,7 +24,7 @@ const DeleteCardSet = ({ id }) => {
 
   if (Auth.loggedIn()) {
     return (
-      <button className="bg-red-500 hover:bg-red-600 focus:bg-red-600 text-white py-2 px-4 rounded-md focus:outline-none" onClick={handleDelete}>
+      <button className="bg-red-500 hover:bg-red-600 focus:bg-red-600 text-white py-2 px-4 rounded-md focus:outline-none mt-1" onClick={handleDelete}>
         Delete Card Set
       </button>
     );

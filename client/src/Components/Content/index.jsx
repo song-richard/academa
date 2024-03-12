@@ -28,9 +28,9 @@ export const Content = () => {
   }
 
   return (
-    <div className="flex justify-center" style={{ marginTop: '70px' }}>
+    <div className="flex justify-center" style={{ marginTop: '30px' }}>
       <div>
-        <Typography variant="h5" gutterBottom className="text-2xl font-bold mb-4">
+        <Typography variant="h5" gutterBottom className="text-2xl font-bold mb-4 text-center">
           Current Decks
         </Typography>
         <Grid container spacing={2}>

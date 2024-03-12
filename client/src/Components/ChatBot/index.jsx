@@ -2,29 +2,20 @@ import React from "react";
 import { useState } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { ASK_LEARNING_EXPERT } from "../../utils/queries";
-import { Typography, Card, CardContent, Modal, Button } from "@mui/material";
+import { Typography, Card, CardContent, Modal, Button, CircularProgress } from "@mui/material";
 import auth from "../../utils/auth";
 
 export const ChatBot = () => {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState(""); 
-
-  //Open Modal Variable
   const [open, setOpen] = useState(false);
-
   const [askLearningExpert, { loading, error, data }] = useLazyQuery(ASK_LEARNING_EXPERT);
   
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-
   const handleInput = async (event) => {
     event.preventDefault();
-
     const { data } = await askLearningExpert({
       variables: { question: input },
     });
-
     setResponse(data.askLearningExpert);
   };
 
@@ -65,14 +56,20 @@ export const ChatBot = () => {
               >
                 Submit
               </button>
-              {response && (
+              {loading ? (
                 <div className="mt-4">
-                  <Card>
-                    <CardContent>
-                      <Typography variant="body1">{response}</Typography>
-                    </CardContent>
-                  </Card>
+                  <CircularProgress />
                 </div>
+              ) : (
+                response && (
+                  <div className="mt-4">
+                    <Card>
+                      <CardContent>
+                        <Typography variant="body1">{response}</Typography>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )
               )}
             </div>
           </div>
