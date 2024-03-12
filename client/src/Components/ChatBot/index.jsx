@@ -29,8 +29,12 @@ export const ChatBot = () => {
 
   if (auth.loggedIn()) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Button variant="contained" onClick={handleOpen}>
+      <div className="flex justify-center items-center ">
+        <Button 
+          variant="contained" 
+          onClick={handleOpen} 
+          style={{ backgroundColor: '#ffee58', color: 'black' }} // Set background color to a muted yellow
+        >
           Ask Academa
         </Button>
         <Modal
