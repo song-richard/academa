@@ -24,6 +24,7 @@ export const Header = () => {
           <div className="hidden md:flex space-x-4">
             {Auth.loggedIn() ? (
               <>
+                <Button color="inherit" onClick={() => redirect('/')}>Home</Button>
                 <Button color="inherit" onClick={() => redirect('./createCardSet')}>Create Cards</Button>
                 <Button color="inherit" onClick={() => redirect('./generateAiCards')}>Create AI Cards</Button>
                 <Button color="inherit" onClick={Auth.logout}>Logout</Button>
