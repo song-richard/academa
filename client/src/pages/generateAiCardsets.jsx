@@ -82,7 +82,7 @@ const GenerateAiCardsets = () => {
               {cardSetState.map((card, index) => (
                 <li key={index}>
                   <div>
-                    <p>{card.term}: {card.description}</p>
+                    <p><span className='font-bold'>{card.term}</span>: {card.description}</p>
                   </div>
                 </li>
               ))}

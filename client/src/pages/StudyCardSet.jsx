@@ -54,6 +54,7 @@ const StudyCardSet = () => {
     if (Auth.loggedIn()) {
         return (
             <div className="text-center font-bold">
+
                 <h1>Study Cards ({getCardSet?.cardSet.title})</h1>
                 {loading ? (
                     <div>Loading...</div>
@@ -71,6 +72,7 @@ const StudyCardSet = () => {
                                 <>
                                     <button onClick={handleFlip} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none">Flip</button>
                                     <button onClick={handleNext} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none">Next</button>
+
                                 </>
                             )}
                         </div>
