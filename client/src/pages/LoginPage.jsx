@@ -6,6 +6,7 @@ import Auth from '../utils/auth';
 const LoginPage = () => {
     //State of form
     const [formState, setFormState] = useState({ user: '', password: '' });
+    const [validated] = useState(false);
     //Query for getting profile
     const [login, { loading, data }] = useMutation(LOGIN);
 
@@ -25,6 +26,8 @@ const LoginPage = () => {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+        } else if (form.checkValidity() === true) {
+            document.querySelector('.validate-text').textContent = 'Invalid username or password. Please try again.';
         }
 
         try {
@@ -42,7 +45,7 @@ const LoginPage = () => {
         <div className="flex justify-center items-center h-screen">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
                 <h1 className="text-2xl font-bold mb-4">Login</h1>
-                <form onSubmit={handleFormSubmit} className="space-y-4">
+                <form noValidate validated={validated} onSubmit={handleFormSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="user" className="block mb-1">Username or Email:</label>
                         <input type="user" id="user" name="user" value={formState.user} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" required />
@@ -52,6 +55,7 @@ const LoginPage = () => {
                         <input type="password" id="password" name="password" value={formState.password} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" required />
                     </div>
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Login</button>
+                    <p className='text-red-500 validate-text'></p>
                 </form>
             </div>
         </div>
