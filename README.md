@@ -91,3 +91,12 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Attribution
+<a href="https://www.freepik.com/free-photo/pieces-blue-stationery_4732186.htm#fromView=search&page=1&position=11&uuid=79a873a6-e0d6-43d4-b16f-080a45b10209">Image by freepik</a>
+
+<a href="https://www.freepik.com/free-photo/flat-lay-arrangement-desk-elements-with-copy-space_7738373.htm#fromView=search&page=1&position=13&uuid=b0babfc5-97c7-4a36-9c88-b34690dbe3e2">Image by freepik</a>
+
+<a href="https://www.freepik.com/free-photo/business-desk-frame-view_13659224.htm#fromView=search&page=1&position=21&uuid=b0babfc5-97c7-4a36-9c88-b34690dbe3e2">Image by freepik</a>
+
+<a href="https://www.freepik.com/free-photo/laptop-with-pen-pencil-paper-clips-sticky-notes-spiral-notepad-beige-background_3776049.htm#fromView=search&page=2&position=1&uuid=f4a05b9a-0c59-47fd-8da6-785757a61dca">Image by freepik</a>
