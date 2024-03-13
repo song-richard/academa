@@ -36,7 +36,7 @@ export const Content = () => {
         <Grid container spacing={2}>
           {cardSets.length !== 0 ? (
             cardSets.map((cardSet) => (
-              <Grid item xs={12} sm={6} key={cardSet._id}>
+              <Grid item xs={12} sm={6} md={4} key={cardSet._id}>
                 <CardComponent cardSet={cardSet} />
               </Grid>
             ))
