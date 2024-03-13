@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import { DELETE_CARDSET } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-const DeleteCardSet = ({ id }) => {
+const DeleteCardSet = ({ id, deleteCardSet: deleteFunction }) => {
   const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
 
   const handleDelete = async () => {
@@ -14,7 +14,9 @@ const DeleteCardSet = ({ id }) => {
             id: id
           }
         });
-        window.location.reload();
+        
+        deleteFunction(id);
+
         console.log('Flashcard set deleted:', data.deleteCardSet);
       }
     } catch (error) {

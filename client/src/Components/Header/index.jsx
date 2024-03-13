@@ -28,8 +28,8 @@ export const Header = () => {
                 <Button color="inherit" onClick={() => redirect('./createCardSet')}>Create Cards</Button>
                 <Button color="inherit" onClick={() => redirect('./generateAiCards')}>Create AI Cards</Button>
                 <Button color="inherit" onClick={Auth.logout}>Logout</Button>
-                <Button color="inherit">
                   <ChatBot /> 
+                <Button color="inherit">
                 </Button>
               </>
             ) : (

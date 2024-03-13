@@ -5,7 +5,7 @@ import { Typography, Card, CardContent } from '@mui/material';
 
 import DeleteCardSet from '../../pages/DeleteCardSet';
 
-export default function CardComponent({ cardSet }) {
+export default function CardComponent({ cardSet, deleteCardSet }) {
   const { title, isCompleted, _id, cards } = cardSet;
 
   return (
@@ -20,7 +20,7 @@ export default function CardComponent({ cardSet }) {
               <button className="bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white py-2 px-4 rounded-md mr-2 focus:outline-none" onClick={() => window.location.assign(`/studyCardSet/${_id}`)}>
                 Study Set
               </button>
-              <DeleteCardSet id={_id} />
+              <DeleteCardSet id={_id} deleteCardSet={deleteCardSet}/>
             </li>
           </ul>
         </CardContent>

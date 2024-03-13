@@ -7,6 +7,7 @@ import { Typography, Grid } from '@mui/material';
 //Query Imports
 import { GET_CARDSETS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
+import { useState, useEffect } from 'react';
 
 //Auth Imports
 import Auth from '../../utils/auth';
@@ -15,7 +16,16 @@ export const Content = () => {
   const profile = (Auth.getProfile()).data;
 
   const { loading, data, error } = useQuery(GET_CARDSETS);
-  const {cardSets} = data?.cardSets || [];
+  const [cardSets, setCardSets] = useState([]);
+
+  useEffect(() => {
+    setCardSets(data?.cardSets.cardSets || []);
+  },[data])
+
+  const deleteCardSet = async (id) => {
+    const newArray = cardSets.filter((cardSet) => cardSet._id !== id);
+    setCardSets(newArray);
+  }
 
 
   if (loading) return <p>Loading...</p>;
@@ -37,7 +47,7 @@ export const Content = () => {
           {cardSets.length !== 0 ? (
             cardSets.map((cardSet) => (
               <Grid item xs={12} md={4} key={cardSet._id}>
-                <CardComponent cardSet={cardSet} />
+                <CardComponent cardSet={cardSet} deleteCardSet={deleteCardSet}/>
               </Grid>
             ))
           ) : (
