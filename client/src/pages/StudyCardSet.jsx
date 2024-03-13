@@ -18,7 +18,7 @@ const StudyCardSet = () => {
     const [flipped, setFlipped] = useState(false);
 
     useEffect(() => {
-        if (cardSet && cardSet.length > 0) {
+        if (cardSet && cardSet.length > 0 && cardIndex < cardSet.length) {
             setCardValue(cardSet[cardIndex].term);
         }
     }, [cardIndex, cardSet]);
@@ -26,6 +26,10 @@ const StudyCardSet = () => {
     const handleNext = () => {
         if (cardIndex < cardSet.length - 1) {
             setCardIndex(cardIndex + 1);
+            setCardValue(cardSet[cardIndex].term);
+        } else {
+            setCardIndex(cardIndex + 1);
+            setCardValue('Congratulations! You have studied all cards in the deck')
         }
     };
 
