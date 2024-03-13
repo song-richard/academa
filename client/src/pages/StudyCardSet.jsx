@@ -64,7 +64,9 @@ const StudyCardSet = () => {
                     <div>Loading...</div>
                 ) : (
                     <>
-                        <div className="bg-gray-20 p-3 mb-4 rounded">{cardValue}</div>
+                        <div className={`bg-white p-6 mb-4 border border-gray-300 min-h-32 rounded-md max-w-md mx-auto ${flipped ? 'transform rotate-y-180' : ''}`}>
+                            <p className="text-lg">{cardValue}</p>
+                        </div>
                         <div className="flex justify-center space-x-3">
                             <button onClick={handlePrevious} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none">Previous</button>
                             {cardIndex >= cardSet.length ? (
