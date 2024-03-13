@@ -64,7 +64,8 @@ const StudyCardSet = () => {
                     <div>Loading...</div>
                 ) : (
                     <>
-                        <div className={`bg-white p-6 mb-4 border border-gray-300 h-32 rounded-md max-w-md mx-auto ${flipped ? 'transform rotate-y-180' : ''}`}>
+
+                        <div className={`bg-white p-6 mb-4 border border-gray-300 min-h-32 rounded-md max-w-md mx-auto ${flipped ? 'transform rotate-y-180' : ''}`}>
                             <p className="text-lg">{cardValue}</p>
                         </div>
                         <div className="flex justify-center space-x-3">
