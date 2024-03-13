@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
+import { Link } from 'react-router-dom'
 import Auth from '../utils/auth';
 
 const LoginPage = () => {
@@ -56,6 +57,7 @@ const LoginPage = () => {
                     </div>
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Login</button>
                     <p className='text-red-500 validate-text'></p>
+                    <Link to='/signup' className='text-purple-500'>Dont have an account? Sign up here.</Link>
                 </form>
             </div>
         </div>
