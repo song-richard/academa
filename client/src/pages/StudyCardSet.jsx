@@ -19,14 +19,14 @@ const StudyCardSet = () => {
 
     useEffect(() => {
         if (cardSet && cardSet.length > 0 && cardIndex < cardSet.length) {
-            setCardValue(cardSet[cardIndex].term);
+            setCardValue(flipped ? cardSet[cardIndex].description : cardSet[cardIndex].term);
         }
-    }, [cardIndex, cardSet]);
+    }, [cardIndex, cardSet, flipped]);
 
     const handleNext = () => {
         if (cardIndex < cardSet.length - 1) {
             setCardIndex(cardIndex + 1);
-            setCardValue(cardSet[cardIndex].term);
+            setFlipped(false);
         } else {
             setCardIndex(cardIndex + 1);
             setCardValue('Congratulations! You have studied all cards in the deck')
@@ -36,6 +36,7 @@ const StudyCardSet = () => {
     const handlePrevious = () => {
         if (cardIndex > 0) {
             setCardIndex(cardIndex - 1);
+            setFlipped(false);
         }
     };
 
@@ -58,12 +59,12 @@ const StudyCardSet = () => {
     if (Auth.loggedIn()) {
         return (
             <div className="text-center font-bold">
-
-                <h1>Study Cards ({getCardSet?.cardSet.title})</h1>
+                <h1 className="text-2xl font-bold mb-4">Study Cards ({getCardSet?.cardSet.title})</h1>
                 {loading ? (
                     <div>Loading...</div>
                 ) : (
                     <>
+
                         <div className={`bg-white p-6 mb-4 border border-gray-300 min-h-32 rounded-md max-w-md mx-auto ${flipped ? 'transform rotate-y-180' : ''}`}>
                             <p className="text-lg">{cardValue}</p>
                         </div>
@@ -78,7 +79,6 @@ const StudyCardSet = () => {
                                 <>
                                     <button onClick={handleFlip} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none">Flip</button>
                                     <button onClick={handleNext} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none">Next</button>
-
                                 </>
                             )}
                         </div>

@@ -6,15 +6,14 @@ import { setContext } from '@apollo/client/link/context';
 //Component Imports
 import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
-import { Content } from "./Components/Content";
-import { ChatBot } from "./Components/ChatBot";
 
-//GraphQL Queries
-import { GET_PROFILES } from './utils/queries';
 
-//COMMENTED OUT UNTIL AUTHO IS IN WORKING STATE - 03/05/2024
-// import { Login } from "./Components/Login";
-// import { Logout } from "./Components/Logout";
+// image imports
+// import paperClipsBG from './assets/images/paperClipsBG.jpg';
+// import yellowLaptopBG from './assets/images/yellowLaptopBG.jpg';
+import glassesBG from './assets/images/glassesBG.jpg';
+// import blueBG from './assets/images/blueBG.jpg';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -42,7 +41,13 @@ function App() {
     <ApolloProvider client={client}>
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow" style={{
+           backgroundImage: `url(${glassesBG})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat'
+           }}>
           <Outlet />
         </main>
         <Footer />
