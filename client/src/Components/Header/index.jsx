@@ -46,11 +46,17 @@ export const Header = () => {
         <List>
           {Auth.loggedIn() ? (
             <>
+              <ListItem button onClick={() => redirect('/')}>
+                <ListItemText primary="Home" />
+              </ListItem>
               <ListItem button onClick={() => redirect('./createCardSet')}>
                 <ListItemText primary="Create Cards" />
               </ListItem>
               <ListItem button onClick={() => redirect('./generateAiCards')}>
                 <ListItemText primary="Create AI Cards" />
+              </ListItem>
+              <ListItem button>
+                <ChatBot />
               </ListItem>
               <ListItem button onClick={Auth.logout}>
                 <ListItemText primary="Logout" />
