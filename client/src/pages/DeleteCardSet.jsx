@@ -68,10 +68,10 @@ const DeleteCardSet = ({ id }) => {
           contentLabel="Confirm Deletion"
           
         >
-          <h2>DELETION IS IRREVERSIBLE</h2>
-          <div >Are you sure you want to delete this card set?</div>
+          <h2 class="font-bold text-xl mb-2">DELETION IS PERMANENT</h2>
+          <div class="text-gray-700 text-base">Are you sure you want to delete this card set?</div>
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={closeModal}>Close</button>
+          onClick={closeModal}>Cancel</button>
           <button className="bg-red-500 hover:bg-red-600 focus:bg-red-600 text-white py-2 px-4 rounded-md focus:outline-none mt-1"
           onClick={confirmDeletion}>Delete</button>
         </Modal>
