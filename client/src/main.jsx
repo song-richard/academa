@@ -4,7 +4,6 @@ import App from './App';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-//Import Pages
 import Home from './pages/Home';
 import StudyCardSet from './pages/StudyCardSet';
 import SignupPage from './pages/SignupPage';
@@ -55,9 +54,7 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-// const domain = import.meta.env.AUTH0_DOMAIN;
-// const clientId = import.meta.env.AUTH0_CLIENT_ID;
-// const audience = import.meta.env.AUTH0_AUDIENCE;
+
 
 root.render(
   <Auth0Provider

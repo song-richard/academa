@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import Auth from '../../utils/auth';
-import { ChatBot } from '../ChatBot'; // Import the ChatBot component
+import { ChatBot } from '../ChatBot';
 
 const redirect = (route) => {
   window.location.assign(route);
@@ -49,10 +49,10 @@ export const Header = () => {
               <ListItem onClick={() => redirect('/')}>
                 <ListItemText primary="Home" />
               </ListItem>
-              <ListItem  onClick={() => redirect('./createCardSet')}>
+              <ListItem onClick={() => redirect('./createCardSet')}>
                 <ListItemText primary="Create Cards" />
               </ListItem>
-              <ListItem  onClick={() => redirect('./generateAiCards')}>
+              <ListItem onClick={() => redirect('./generateAiCards')}>
                 <ListItemText primary="Create AI Cards" />
               </ListItem>
               <ListItem>

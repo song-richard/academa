@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom'
 import Auth from '../utils/auth';
 
 const LoginPage = () => {
-    //State of form
     const [formState, setFormState] = useState({ user: '', password: '' });
     const [validated] = useState(false);
-    //Query for getting profile
     const [login, { loading, data }] = useMutation(LOGIN);
 
     const handleInputChange = (event) => {
@@ -24,12 +22,12 @@ const LoginPage = () => {
         event.preventDefault();
 
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        } else if (form.checkValidity() === true) {
-            document.querySelector('.validate-text').textContent = 'Invalid username or password. Please try again.';
-        }
+        // if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // } else if (form.checkValidity() === true) {
+        //     document.querySelector('.validate-text').textContent = 'Invalid username or password. Please try again.';
+        // }
 
         try {
             const { data } = await login({

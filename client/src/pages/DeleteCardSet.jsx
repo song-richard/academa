@@ -4,7 +4,6 @@ import { DELETE_CARDSET } from '../utils/mutations';
 import Auth from '../utils/auth';
 import Modal from 'react-modal';
 
-// Custom styles for the modal
 const customStyles = {
   content: {
     top: '50%',
@@ -16,24 +15,20 @@ const customStyles = {
   },
 };
 
-// Set app element for accessibility
 Modal.setAppElement('#root');
 
 const DeleteCardSet = ({ id }) => {
   const [deleteCardSet, { error }] = useMutation(DELETE_CARDSET);
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  // Function to open the modal
   const openModal = () => {
     setIsOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setIsOpen(false);
   };
 
-  // Function to handle deletion after confirmation
   const confirmDeletion = async () => {
     try {
       const { data } = await deleteCardSet({
@@ -46,12 +41,10 @@ const DeleteCardSet = ({ id }) => {
     }
   };
 
-  // Function to open the modal instead of deleting directly
   const handleDelete = () => {
     openModal();
   };
 
-  // Conditional rendering based on login status
   if (Auth.loggedIn()) {
     return (
       <>
@@ -66,14 +59,14 @@ const DeleteCardSet = ({ id }) => {
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Confirm Deletion"
-          
+
         >
           <h2 className="font-bold text-xl mb-2">CONFIRM DELETION</h2>
           <div className="text-gray-700 text-base">Deleting will be permanent, are you sure you want to delete this card set?</div>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={closeModal}>Cancel</button>
+            onClick={closeModal}>Cancel</button>
           <button className="bg-red-500 hover:bg-red-600 focus:bg-red-600 text-white py-2 px-4 rounded-md focus:outline-none mt-1"
-          onClick={confirmDeletion}>Delete</button>
+            onClick={confirmDeletion}>Delete</button>
         </Modal>
       </>
     );

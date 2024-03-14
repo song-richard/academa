@@ -5,12 +5,10 @@ import { GET_PROFILE } from '../utils/queries';
 import Auth from '../utils/auth';
 
 const SignupPage = () => {
-    //State of form
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [getProfile, { data: profileData }] = useLazyQuery(GET_PROFILE);
     const [validated] = useState(false);
 
-    //Mutation for adding profile
     const [addProfile, { data }] = useMutation(ADD_PROFILE);
 
     const handleInputChange = (event) => {
@@ -20,7 +18,7 @@ const SignupPage = () => {
             [name]: value
         });
 
-        if (value){
+        if (value) {
             nextSibling.textContent = ''
         }
     };
@@ -38,16 +36,16 @@ const SignupPage = () => {
                 const passwordValidation = document.getElementById('password-validation-text');
                 const password = document.getElementById('password');
                 console.log(usernameValidation.textContent)
-                if (!usernameValidation.textContent && !username.value){
+                if (!usernameValidation.textContent && !username.value) {
                     usernameValidation.textContent = '* Field required';
                 }
-                if (!emailValidation.textContent && !email.value){
+                if (!emailValidation.textContent && !email.value) {
                     emailValidation.textContent = '* Field required';
                 }
-                if (!passwordValidation.textContent && !password.value){
+                if (!passwordValidation.textContent && !password.value) {
                     passwordValidation.textContent = '* Field required';
                 }
-                
+
             }
             const { data } = await addProfile({
                 variables: { ...formState }
@@ -73,7 +71,7 @@ const SignupPage = () => {
         }
         else {
             nextSibling.textContent = ''
-        } 
+        }
     }
 
     const handlePasswordValidation = (event) => {
@@ -107,10 +105,10 @@ const SignupPage = () => {
                     </div>
                     <div>
                         <label htmlFor="password" className="block mb-1">Password:</label>
-                        <input type="password" id="password" name="password" value={formState.password} onChange={() => {handleInputChange(event); handlePasswordValidation(event)}} onBlur={handleBlankInput}className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" required />
+                        <input type="password" id="password" name="password" value={formState.password} onChange={() => { handleInputChange(event); handlePasswordValidation(event) }} onBlur={handleBlankInput} className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" required />
                         <p className='text-red-500' id="password-validation-text"></p>
                     </div>
-                    <button type="submit"  className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Signup</button>
+                    <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Signup</button>
                 </form>
             </div>
         </div>

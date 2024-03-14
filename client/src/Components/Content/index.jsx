@@ -1,25 +1,19 @@
 import React from 'react'
 import CardComponent from './CardComponent'
-
-//MUI Imports
 import { Typography, Grid } from '@mui/material';
-
-//Query Imports
 import { GET_CARDSETS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
-
-//Auth Imports
 import Auth from '../../utils/auth';
 
 export const Content = () => {
   const profile = (Auth.getProfile()).data;
 
   const { loading, data, error } = useQuery(GET_CARDSETS);
-  const {cardSets} = data?.cardSets || [];
+  const { cardSets } = data?.cardSets || [];
 
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>; 
+  if (error) return <p>Error: {error.message}</p>;
 
   //Ensure the cardSets is an Array
   if (!Array.isArray(cardSets)) {
