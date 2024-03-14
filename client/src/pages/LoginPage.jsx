@@ -22,12 +22,12 @@ const LoginPage = () => {
         event.preventDefault();
 
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        } else if (form.checkValidity() === true) {
-            document.querySelector('.validate-text').textContent = 'Invalid username or password. Please try again.';
-        }
+        // if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // } else if (form.checkValidity() === true) {
+        //     document.querySelector('.validate-text').textContent = 'Invalid username or password. Please try again.';
+        // }
 
         try {
             const { data } = await login({
