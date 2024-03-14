@@ -66,11 +66,14 @@ const DeleteCardSet = ({ id }) => {
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Confirm Deletion"
+          
         >
-          <h2>Confirm Deletion</h2>
-          <button onClick={closeModal}>Close</button>
-          <div>Are you sure you want to delete this card set?</div>
-          <button onClick={confirmDeletion}>Confirm Delete</button>
+          <h2>DELETION IS IRREVERSIBLE</h2>
+          <div >Are you sure you want to delete this card set?</div>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={closeModal}>Close</button>
+          <button className="bg-red-500 hover:bg-red-600 focus:bg-red-600 text-white py-2 px-4 rounded-md focus:outline-none mt-1"
+          onClick={confirmDeletion}>Delete</button>
         </Modal>
       </>
     );
