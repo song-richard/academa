@@ -59,7 +59,7 @@ const StudyCardSet = () => {
     if (Auth.loggedIn()) {
         return (
             <div className="text-center font-bold">
-                <h1 className="text-2xl font-bold mb-4">Study Cards ({getCardSet?.cardSet.title})</h1>
+                <h1 className="text-2xl font-bold mb-4">{getCardSet?.cardSet.title}</h1>
                 {loading ? (
                     <div>Loading...</div>
                 ) : (
