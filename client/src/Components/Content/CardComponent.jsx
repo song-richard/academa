@@ -1,6 +1,5 @@
 import React from 'react';
 
-// MUI Imports
 import { Typography, Card, CardContent } from '@mui/material';
 
 import DeleteCardSet from '../../pages/DeleteCardSet';

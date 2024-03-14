@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-    //Home page if user is logged in
     if (Auth.loggedIn()) {
         return (<Content />);
     }
 
-    //Home page if user is not logged in
-    //TODO: Style this page
+
     return (
         <div className="max-w-lg mx-auto px-4 py-8 text-center">
             <h1 className="text-4xl font-bold mb-4">Welcome to Academa</h1>
