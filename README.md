@@ -32,7 +32,7 @@ npm run dev
 yarn dev
 
 ## Usage
-After signing up or logging in, navigate to the "Create Flashcard" or "Generate AI Flashcard" components to begin building your study materials. The AI chatbot is available for any inquiries or assistance needed in creating flashcards.
+Visit the site at https://academa-zkud.onrender.com. After signing up or logging in, navigate to the "Create Flashcard" or "Generate AI Flashcard" components to begin building your study materials. The AI chatbot is available for any inquiries or assistance needed in creating flashcards.
 
 ![image](https://github.com/song-richard/academa/assets/75392247/d1d6801f-db8e-40ca-be5a-2d650d812f0c)
 ![image](https://github.com/song-richard/academa/assets/75392247/3efdfb5b-1865-4d50-9d35-2f3c0a56fe30)
